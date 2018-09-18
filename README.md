@@ -1,4 +1,4 @@
-# ngular-playlist
+# Angular-playlist
 
 ## 项目简介
 使用Angular重写之前的音乐歌单信息分析项目
