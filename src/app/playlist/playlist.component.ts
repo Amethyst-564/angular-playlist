@@ -19,7 +19,8 @@ export class PlaylistComponent implements OnInit {
 
   getDetails(): void {
     this.playlistService.getDetails().subscribe(root => {
-      console.log('获取到歌单Json');
+      console.log(root);
+      console.log('获取到歌单json');
       this.tracks = root.result;
       console.log(this.tracks);
     })

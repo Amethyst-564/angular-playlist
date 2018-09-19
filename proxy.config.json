@@ -1,5 +1,7 @@
 {
     "/api": {
-        "target": "http://music.163.com/api"
+        "target": "http://music.163.com",
+        "secure": false,
+        "changeOrigin": true
     }
 }
