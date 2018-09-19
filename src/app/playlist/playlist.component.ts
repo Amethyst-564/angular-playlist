@@ -15,7 +15,6 @@ export class PlaylistComponent implements OnInit {
   listId;
   listTitle;
   listCover;
-  time;
 
   constructor(private playlistService: PlaylistService) { }
 
