@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PlaylistService } from '../service/playlist.service';
 
+// 引入Lodash
+import * as _ from 'lodash';
+
 @Component({
   selector: 'app-playlist',
   templateUrl: './playlist.component.html',
