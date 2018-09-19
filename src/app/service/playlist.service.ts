@@ -19,7 +19,7 @@ export class PlaylistService {
 
   constructor(private http: HttpClient) { }
 
-  private url = '/api/playlist/detail?id=956408927';  // 曲库api
+  private url = '/api/playlist/detail?id=2289611170';  // 曲库api
 
   getDetails(): Observable<any> {
 

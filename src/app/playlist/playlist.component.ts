@@ -3,7 +3,6 @@ import { PlaylistService } from '../service/playlist.service';
 
 // 引入Lodash
 import * as _ from 'lodash';
-import { getLocaleTimeFormat } from '@angular/common';
 
 @Component({
   selector: 'app-playlist',
@@ -45,7 +44,7 @@ export class PlaylistComponent implements OnInit {
         // 艺术家们
         const artists = track.artists;
         let songArtists = '';
-        _.each(artists, (artist, index) => {
+        _.each(artists, (artist) => {
           songArtists = artist.name + ', ';
         });
         // 去掉string尾指定字符
