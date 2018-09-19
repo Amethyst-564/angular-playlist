@@ -10,6 +10,8 @@ export class PlaylistComponent implements OnInit {
 
   constructor(private playlistService: PlaylistService) { }
 
+  listId;
+  listTitle;
   tracks = [];
   artists = [];
 
@@ -19,10 +21,12 @@ export class PlaylistComponent implements OnInit {
 
   getDetails(): void {
     this.playlistService.getDetails().subscribe(root => {
-      console.log(root);
       console.log('获取到歌单json');
-      this.tracks = root.result;
-      console.log(this.tracks);
+      this.listId = root.result.id;
+      this.listTitle = root.result.name;
+      // this.tracks = root.result;
+      console.log(this.listId, ' ', this.listTitle);
+      console.log(root.tracks);
     })
   }
 
