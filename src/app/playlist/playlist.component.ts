@@ -27,7 +27,7 @@ export class PlaylistComponent implements OnInit {
       // this.tracks = root.result;
       console.log(this.listId, ' ', this.listTitle);
       console.log(root.tracks);
-    })
+    });
   }
 
 }
