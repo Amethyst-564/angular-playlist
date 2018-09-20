@@ -36,8 +36,13 @@
         }
     }
     #mid {
-        margin-top: 10px;
         #left {
+            // 把左侧固定住
+            position: sticky;
+            top: 7.5rem;
+            z-index: 1000;
+            height: calc(100vh - 7.7rem);
+            // 内部布局
             display: flex;
             flex-direction: column; //垂直flex
             align-items: center;
@@ -47,7 +52,9 @@
                 width: 80%;
             }
         }
-        #right {}
+        #right {
+            overflow: auto;
+        }
     }
 }
 
