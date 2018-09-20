@@ -14,6 +14,7 @@ export class PlaylistComponent implements OnInit {
   listId;
   listTitle;
   listCover;
+  tracks;
 
   constructor(private playlistService: PlaylistService) { }
 
@@ -26,6 +27,8 @@ export class PlaylistComponent implements OnInit {
 
       console.log('获取到歌单json');
 
+      let count = 1;
+
       // 歌单号
       this.listId = root.result.id;
 
@@ -36,7 +39,7 @@ export class PlaylistComponent implements OnInit {
       this.listCover = root.result.coverImgUrl;
 
       // 拼装json
-      const tracks = _.map(root.result.tracks, (track) => {
+      this.tracks = _.map(root.result.tracks, (track) => {
 
         // 歌曲标题
         const songTitle = track.name;
@@ -66,6 +69,7 @@ export class PlaylistComponent implements OnInit {
 
 
         return {
+          'id': count++,
           'songTitle': songTitle,
           'songArtists': songArtists,
           'album': album,
@@ -73,7 +77,7 @@ export class PlaylistComponent implements OnInit {
         };
       });
 
-      console.log('tracks: ', tracks);
+      console.log('tracks: ', this.tracks);
     });
   }
 

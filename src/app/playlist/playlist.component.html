@@ -1,3 +1,25 @@
 <h2>{{listTitle}}</h2>
 <p>Playlist Id: {{listId}}</p>
 <img src="{{listCover}}" width="150px" height="150px">
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col"> </th>
+            <th scope="col">歌曲标题</th>
+            <th scope="col">时长</th>
+            <th scope="col">歌手</th>
+            <th scope="col">专辑</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let track of tracks">
+            <th scope="row">{{track.id}}</th>
+            <td scope="row">{{track.songTitle}}</td>
+            <td scope="row">{{track.duration}}</td>
+            <td scope="row">{{track.songArtists}}</td>
+            <td scope="row">{{track.album}}</td>
+        </tr>
+
+    </tbody>
+</table>
