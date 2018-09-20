@@ -1,0 +1,31 @@
+@primary: #563d7c;
+.input-style(@color: @primary) {
+    color: #495057;
+    background-color: #fff;
+    border-color: lighten(@color, 20%);
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(@color, 0.25);
+}
+
+.container {
+    .form-control {
+        &:hover,
+        &:focus {
+            .input-style();
+        }
+    }
+    .btn-primary {
+        color: #fff;
+        background-color: @primary;
+        border-color: @primary;
+    }
+    .btn-primary:hover {
+        color: #fff;
+        background-color: lighten(@primary, 10%);
+        border-color: lighten(@primary, 10%);
+    }
+    .btn-primary:focus,
+    .btn-primary.focus {
+        box-shadow: 0 0 0 0.2rem rgba(@primary, 0.5);
+    }
+}

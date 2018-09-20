@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlaylistService } from '../service/playlist.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 
 // 引入Lodash
 import * as _ from 'lodash';
@@ -15,19 +17,39 @@ export class PlaylistComponent implements OnInit {
   listTitle;
   listCover;
   tracks;
+  link;
 
-  constructor(private playlistService: PlaylistService) { }
+  constructor(private playlistService: PlaylistService,
+    private route: ActivatedRoute,
+    private router: Router) {
+    this.route.params.subscribe(params => {
+      this.getDetails(params.id);
 
-  ngOnInit() {
-    this.getDetails();
+    });
   }
 
-  getDetails(): void {
-    this.playlistService.getDetails().subscribe(root => {
+  ngOnInit() {
+    // // 获得next处发送来的数据
+    // this.playlistService.searchData.subscribe(data => {
+    //   this.getDetails(data);
+    // });
+
+    // this.link = this.route.paramMap.pipe(
+    //   switchMap((params: ParamMap) =>
+    //     this.playlistService.getDetails(params.get('id')))
+    // );
+  }
+
+  // OnDestroy() {
+  //   this.playlistService.searchData.unsubscribe();
+  // }
+
+  getDetails(id: string): void {
+    this.playlistService.getDetails(id).subscribe(root => {
 
       console.log('获取到歌单json');
 
-      let count = 1;
+      // let count = 1;
 
       // 歌单号
       this.listId = root.result.id;
@@ -64,12 +86,14 @@ export class PlaylistComponent implements OnInit {
         if (min < 10) {
           min = '0' + min;
         }
-        const sec = duration % 60;
+        let sec: any = duration % 60;
+        if (sec < 10) {
+          sec = '0' + sec;
+        }
         duration = min + ':' + sec;
 
 
         return {
-          'id': count++,
           'songTitle': songTitle,
           'songArtists': songArtists,
           'album': album,

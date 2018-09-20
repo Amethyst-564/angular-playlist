@@ -59,8 +59,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let track of tracks">
-                        <th scope="row">{{track.id}}</th>
+                    <tr *ngFor="let track of tracks;let i = index">
+                        <th scope="row">{{i+1}}</th>
                         <td scope="row">{{track.songTitle}}</td>
                         <td scope="row">{{track.duration}}</td>
                         <td scope="row">{{track.songArtists}}</td>

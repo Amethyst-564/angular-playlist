@@ -9,6 +9,8 @@ const routes: Routes = [
 
   // 默认路由
   { path: '', redirectTo: '/playlist', pathMatch: 'full' },
+  { path: 'playlist/:id', component: PlaylistComponent },
+
 
   // 歌单组件路由
   { path: 'playlist', component: PlaylistComponent },

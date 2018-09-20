@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 // 引入http客户端
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 
 const httpOptions = {
@@ -17,14 +17,16 @@ const httpOptions = {
 
 export class PlaylistService {
 
+  // // 新建一个Subject
+  // searchData: Subject<any> = new Subject<any>();
+  private url = '/api/playlist/detail';  // 曲库api
+
   constructor(private http: HttpClient) { }
 
-  private url = '/api/playlist/detail?id=2379576084';  // 曲库api
+  getDetails(id: string): Observable<any> {
 
-  getDetails(): Observable<any> {
-
-    console.log(this.url);
-
-    return this.http.get<any>(this.url, httpOptions);
+    const url = `${this.url}?id=${id}`;
+    console.log(url);
+    return this.http.get<any>(url, httpOptions);
   }
 }
