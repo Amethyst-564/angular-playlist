@@ -6,16 +6,13 @@
     border: 2px solid @color;
 }
 
-// :host {
-//     width: 100vw;
-//     height: 100vh;
-//     display: flex; // align-items: center; // 垂直对齐在中心（stretch是拉伸以填充，baseline是基线对其）
-//     // justify-content: center; // flex项水平对齐在容器中心
-// }
 .container {
     max-width: 100vw;
     #header {
         line-height: 3rem;
+        position: sticky;
+        top: 0; // 保证在最上层，内容滚动时从下面走过
+        z-index: 1071;
         .col-12 {
             padding-left: 0;
             padding-right: 0;
