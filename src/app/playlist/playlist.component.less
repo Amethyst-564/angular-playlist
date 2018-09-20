@@ -1,20 +1,65 @@
-@blue: #258DFF;
-@green: #15bf81;
-@cyan: #72b5ff;
-@red: #ff6666;
-@gray-600: #a7a8a9;
-@gray-300: #dcdfe6;
-@secondary: @gray-300;
-@gray-200: #f1f3f7;
-@gray-400: #c7cbd5;
-@gray-500: #acb4c2;
-@grid-columns: 12;
-@font-size-base: 0.875rem;
-@table-cell-padding: 1rem;
-@table-accent-bg: fadeout(@blue, 5%);
-@table-cell-padding-sm: .75rem;
-@table-hover-bg: fadeout(@blue, 8%);
-@border-radius: .125rem;
-@border-radius-lg: .2rem;
-@border-radius-sm: .15rem;
-@input-placeholder-color: @gray-400;
+@primary: #563d7c;
+@border-radius: .25rem;
+.button-style (@color: white) {
+    font-weight: 500;
+    border-radius: .25rem;
+    border: 2px solid @color;
+}
+
+// :host {
+//     width: 100vw;
+//     height: 100vh;
+//     display: flex; // align-items: center; // 垂直对齐在中心（stretch是拉伸以填充，baseline是基线对其）
+//     // justify-content: center; // flex项水平对齐在容器中心
+// }
+.container {
+    max-width: 100vw;
+
+    #header {
+        line-height: 3rem;
+        .col-12 {
+            padding-left: 0;
+            padding-right: 0;
+            nav {
+                background-color: @primary;
+                box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .05), inset 0 -1px 0 rgba(0, 0, 0, .1);
+                // 登陆按钮
+                #header-login {
+                    .button-style;
+                    &:hover {
+                        .button-style;
+                    }
+                }
+                // 标题
+                #nav-title{
+                    font-size: 1.5rem;
+                    padding-right: 1rem;
+                }
+
+            }
+        }
+    }
+
+    #mid {
+        margin-top: 10px; 
+        #left {
+            display: flex;
+            flex-direction: column; //垂直flex
+            align-items: center;
+            img {
+                width: 80%;
+            }
+        }
+        #right {
+
+        }
+    }
+}
+
+.table {
+    border-radius: @border-radius;
+    .thead-dark {
+        th {}
+    }
+    tbody {}
+}
