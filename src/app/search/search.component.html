@@ -7,8 +7,8 @@
       <form #loginForm="ngForm" id="search-form">
 
         <div class="form-group">
-          <label for="link">将网易云音乐歌单分享链接粘贴至此：</label>
-          <input type="text" class="form-control" id="link" aria-describedby="urlInput" placeholder="Input your share link."
+          <label for="link">将网易云音乐<b>歌单地址</b>或<b>分享链接</b>粘贴至此：</label>
+          <input type="text" class="form-control" id="link" aria-describedby="urlInput" placeholder="例：http://music.163.com/m/playlist?id=802453538"
             required [(ngModel)]="model.link" name="link" #link="ngModel">
           <small id="urlInput" class="form-text text-muted">地址对了才能得到你想要的结果哦</small>
 
