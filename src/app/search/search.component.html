@@ -1,18 +1,27 @@
 <div class="container">
-  <form #loginForm="ngForm" id="searchForm">
+  <!-- header -->
+  <app-navbar></app-navbar>
+  <!-- content -->
+  <div class="row" id="search-content">
+    <div class="col-6">
+      <form #loginForm="ngForm" id="search-form">
 
-    <div class="form-group">
-      <label for="link">将网易云音乐歌单分享链接粘贴至此：</label>
-      <input type="text" class="form-control" id="link" aria-describedby="urlInput" placeholder="Input your share link."
-        required [(ngModel)]="model.link" name="link" #link="ngModel">
-      <small id="urlInput" class="form-text text-muted">地址对了才能得到你想要的结果哦</small>
+        <div class="form-group">
+          <label for="link">将网易云音乐歌单分享链接粘贴至此：</label>
+          <input type="text" class="form-control" id="link" aria-describedby="urlInput" placeholder="Input your share link."
+            required [(ngModel)]="model.link" name="link" #link="ngModel">
+          <small id="urlInput" class="form-text text-muted">地址对了才能得到你想要的结果哦</small>
 
-      <div [hidden]="link.valid || link.pristine" class="alert alert-danger">
-        分享链接不能为空
-      </div>
+          <div [hidden]="link.valid || link.pristine" class="alert alert-danger">
+            分享链接不能为空
+          </div>
+        </div>
+
+        <button type="submit" class="btn" [class.btn-primary]="loginForm.form.valid" [disabled]="!loginForm.form.valid"
+          (click)="parseLink(model.link)">确定</button>
+      </form>
     </div>
 
-    <button type="submit" class="btn" [class.btn-primary]="loginForm.form.valid" [disabled]="!loginForm.form.valid"
-      (click)="parseLink(model.link)">确定</button>
-  </form>
+  </div>
+
 </div>

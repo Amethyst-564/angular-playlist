@@ -1,0 +1,42 @@
+@primary: #563d7c;
+@border-radius: .25rem;
+.button-style(@color: white) {
+    font-weight: 500;
+    border-radius: .25rem;
+    border: 2px solid @color;
+}
+
+.internal-flex() {
+    // 内部flex布局
+    display: flex;
+    flex-direction: column; //垂直flex
+    align-items: center;
+}
+
+#header {
+    line-height: 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1071; // 保证在最上层，内容滚动时从下面走过
+    box-shadow: 0 0 1rem #9da5ab;
+    .col-12 {
+        padding-left: 0;
+        padding-right: 0;
+        nav {
+            background-color: @primary;
+            .dropdown-menu {
+                left: inherit;
+            } // 登陆按钮
+            #header-login {
+                .button-style;
+                &:hover {
+                    .button-style;
+                }
+            } // 标题
+            #nav-title {
+                font-size: 1.5rem;
+                padding-right: 1rem;
+            }
+        }
+    }
+}
