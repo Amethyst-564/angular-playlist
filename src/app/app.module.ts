@@ -8,6 +8,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from './search/search.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

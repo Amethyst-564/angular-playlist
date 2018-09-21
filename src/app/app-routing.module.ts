@@ -11,10 +11,11 @@ const routes: Routes = [
   { path: '', redirectTo: '/search', pathMatch: 'full' },
 
   // 歌单组件
-  // { path: 'playlist', component: PlaylistComponent },
+  { path: 'playlist', component: PlaylistComponent },
   { path: 'playlist/:id', component: PlaylistComponent },
   // 搜索组件
   { path: 'search', component: SearchComponent },
+  // { path: '**', pathMatch: 'full', redirectTo: 'notfound' }
 ];
 
 
