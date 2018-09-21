@@ -9,11 +9,16 @@
             <h2>{{listTitle}}</h2>
             <p>Playlist Id: {{listId}}</p>
             <img src="{{listCover}}" alt="Responsive image">
+
+            <div id="buttons">
+                <button class="btn btn-outline-secondary" onclick="document.getElementById('table').className = 'table table-light table-hover'">light</button>
+                <button class="btn btn-dark" onclick="document.getElementById('table').className = 'table table-dark table-hover'">dark</button>
+            </div>
         </div>
 
         <!-- right -->
         <div class="col-9" id="right">
-            <table class="table table-hover">
+            <table class="table table-hover" id="table">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col"> </th>
