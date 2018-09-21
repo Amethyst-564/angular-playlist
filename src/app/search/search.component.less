@@ -25,20 +25,32 @@
                 &:focus {
                     .input-style();
                 }
-            }
+            } // 修改bootstrap按钮样式
             .btn-primary {
                 color: #fff;
                 background-color: @primary;
                 border-color: @primary;
-            }
-            .btn-primary:hover {
-                color: #fff;
-                background-color: lighten(@primary, 10%);
-                border-color: lighten(@primary, 10%);
-            }
-            .btn-primary:focus,
-            .btn-primary.focus {
-                box-shadow: 0 0 0 0.2rem rgba(@primary, 0.5);
+                &:hover {
+                    color: #fff;
+                    background-color: lighten(@primary, 10%);
+                    border-color: lighten(@primary, 10%);
+                }
+                &:focus,
+                .focus {
+                    box-shadow: 0 0 0 0.2rem rgba(@primary, 0.5);
+                }
+            } // 修改bootstrap提示框样式
+            .alert-primary {
+                color: @primary;
+                background-color: fade(@primary, 35%);
+                border-color: fade(@primary, 40%);
+                padding: .7rem 1.25rem;
+                hr {
+                    border-top-color: fade(@primary, 40%);
+                }
+                .alert-link {
+                    color: fadein(@primary, 10%);
+                }
             }
         }
     }

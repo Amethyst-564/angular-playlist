@@ -12,7 +12,7 @@
             required [(ngModel)]="model.link" name="link" #link="ngModel">
           <small id="urlInput" class="form-text text-muted">地址对了才能得到你想要的结果哦</small>
 
-          <div [hidden]="link.valid || link.pristine" class="alert alert-danger">
+          <div [hidden]="link.valid || link.pristine" class="alert alert-primary">
             分享链接不能为空
           </div>
         </div>
