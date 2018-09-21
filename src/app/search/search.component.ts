@@ -26,10 +26,15 @@ export class SearchComponent implements OnInit {
   parseLink() {
 
     const link = this.model.link;
-
     const start = link.indexOf('?id=') + 4;
     const end = link.indexOf('&userid=');
-    const playlistId = link.substring(start, end);
+    let playlistId;
+
+    if (end === -1) {
+      playlistId = link.substring(start);
+    } else {
+      playlistId = link.substring(start, end);
+    }
 
     console.log(start);
     console.log(end);
