@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'playlist/:id', component: PlaylistComponent },
   // 搜索组件
   { path: 'search', component: SearchComponent },
+  // TODO 前面所有都不匹配时，重定向到404页
   // { path: '**', pathMatch: 'full', redirectTo: 'notfound' }
 ];
 

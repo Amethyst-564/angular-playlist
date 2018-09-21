@@ -9,7 +9,8 @@ import { Validators } from '@angular/forms';
 
 import * as _ from 'lodash';
 
-const regex = /.*(music\.163\.com\/){1}(.)+(\?id=){1}\d+.*/;
+// const regex = /.*(music\.163\.com\/){1}(.)+(\?id=){1}\d+.*/;
+const regex = /.*music\.163\.com\/.*\?id\=\d+.*/;
 
 @Component({
   selector: 'app-search',
@@ -28,11 +29,7 @@ export class SearchComponent implements OnInit {
     private _router: Router,
   ) { }
 
-  ngOnInit() {
-    // const re = new RegExp('^(.)*(music\.163\.com\/)(.)+\?id=(\d)+(.)*$');
-    const re = new RegExp(/.*(music\.163\.com\/){1}(.)+(\?id=){1}\d+.*/);
-    console.log(re.test('https://music.163.com/playlist?id=956408927&userid=31176983'));
-  }
+  ngOnInit() { }
 
   parseLink() {
 
@@ -46,10 +43,6 @@ export class SearchComponent implements OnInit {
     } else {
       playlistId = link.substring(start, end);
     }
-
-    console.log(start);
-    console.log(end);
-    console.log(playlistId);
 
     // // send data
     // this.playlistService.searchData.next(playlistId);

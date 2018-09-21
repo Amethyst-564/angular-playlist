@@ -33,11 +33,6 @@ export class PlaylistComponent implements OnInit {
     // this.playlistService.searchData.subscribe(data => {
     //   this.getDetails(data);
     // });
-
-    // this.link = this.route.paramMap.pipe(
-    //   switchMap((params: ParamMap) =>
-    //     this.playlistService.getDetails(params.get('id')))
-    // );
   }
 
   // OnDestroy() {
@@ -45,18 +40,15 @@ export class PlaylistComponent implements OnInit {
   // }
 
   getDetails(id: string): void {
+
     this.playlistService.getDetails(id).subscribe(root => {
 
       console.log('获取到歌单json');
 
-      // let count = 1;
-
       // 歌单号
       this.listId = root.result.id;
-
       // 歌单名
       this.listTitle = root.result.name;
-
       // 歌单封面图
       this.listCover = root.result.coverImgUrl;
 

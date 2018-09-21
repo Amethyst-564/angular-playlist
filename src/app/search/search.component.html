@@ -8,22 +8,19 @@
 
         <div class="form-group">
           <label for="link">将网易云音乐<b>歌单地址</b>或<b>分享链接</b>粘贴至此：</label>
-          <!-- <input type="url" class="form-control" id="link" aria-describedby="urlInput" placeholder="例：http://music.163.com/m/playlist?id=802453538"
-            required pattern=".*music\.163\.com\/.*\?id\=\d+.*" [(ngModel)]="model.link" name="link" #link="ngModel"> -->
           <input type="url" class="form-control" id="link" aria-describedby="urlInput" placeholder="例：http://music.163.com/m/playlist?id=802453538"
             required [(ngModel)]="model.link" [formControl]="link">
           <small id="urlInput" class="form-text text-muted">地址对了才能得到你想要的结果哦</small>
-          <!-- <div id="alert" [hidden]="link.valid || link.pristines" class="alert alert-primary"> -->
-          <div *ngIf="link.hasError('required')" class="alert alert-primary">
+          <div *ngIf="link.hasError('required') && link.dirty" class="alert alert-primary">
             链接不能为空
           </div>
-          <div *ngIf="link.hasError('pattern')" class="alert alert-primary">
+          <div *ngIf="link.hasError('pattern') && link.dirty" class="alert alert-primary">
             分享链接格式不正确
           </div>
         </div>
 
-        <button type="submit" class="btn" [class.btn-primary]="!link.hasError('required') && !link.hasError('pattern')" [disabled]="link.hasError('required') || link.hasError('pattern')"
-          (click)="parseLink(model.link)">确定</button>
+        <button type="submit" class="btn" [class.btn-primary]="!link.hasError('required') && !link.hasError('pattern')"
+          [disabled]="link.hasError('required') || link.hasError('pattern')" (click)="parseLink(model.link)">确定</button>
       </form>
     </div>
 
