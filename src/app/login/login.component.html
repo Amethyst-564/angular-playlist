@@ -2,5 +2,30 @@
   <!-- header -->
   <app-navbar></app-navbar>
   <!-- content -->
-  
+  <div class="row" id="mid">
+    <div class="col-3">
+      <!-- <form #loginForm="ngForm" id="login-form"> -->
+      <form #loginForm="ngForm" id="login-form">
+        <div class="form-group">
+          <label for="username">username:</label>
+          <input type="text" class="form-control" id="username" [formControl]="username" required>
+          <div *ngIf="username.hasError('required') && username.dirty" class="alert alert-primary">
+            用户名不能为空
+          </div>
+
+          <label for="password">password:</label>
+          <input type="password" class="form-control" id="password" [formControl]="password" required>
+          <div *ngIf="password.hasError('required') && password.dirty" class="alert alert-primary">
+            密码不能为空
+          </div>
+
+        </div>
+
+        <button type="submit" class="btn" [class.btn-primary]="!username.hasError('required') && !password.hasError('required')"
+          [disabled]="username.hasError('required') || password.hasError('required')">Login</button>
+
+      </form>
+    </div>
+  </div>
+
 </div>
