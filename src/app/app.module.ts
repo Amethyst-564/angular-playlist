@@ -9,13 +9,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from './search/search.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AboutComponent } from './about/about.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlaylistComponent,
     SearchComponent,
-    NavbarComponent
+    NavbarComponent,
+    AboutComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
