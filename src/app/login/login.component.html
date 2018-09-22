@@ -22,7 +22,7 @@
         </div>
 
         <button type="submit" class="btn" [class.btn-primary]="!username.hasError('required') && !password.hasError('required')"
-          [disabled]="username.hasError('required') || password.hasError('required')">Login</button>
+          [disabled]="username.hasError('required') || password.hasError('required')" (click)="login(username.value, password.value)">Login</button>
 
       </form>
     </div>

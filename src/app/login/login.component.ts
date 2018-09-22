@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 // 表单验证器
 import { Validators } from '@angular/forms';
+import { LoginService } from '../service/login.service';
 
 @Component({
   selector: 'app-login',
@@ -19,13 +20,13 @@ export class LoginComponent implements OnInit {
   username = new FormControl('', [Validators.required]);
   password = new FormControl('', [Validators.required]);
 
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
   }
 
-  login() {
-    console.log('调用登陆api成功');
+  login(username: string, password: string) {
+    this.loginService.login(username, password);
   }
 
 }
