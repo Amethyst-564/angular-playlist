@@ -37,14 +37,20 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    const el = document.getElementById('modal-center');
+    // 当modal完全加载时
     $('#modal-center').on('shown.bs.modal', function (e) {
-      // do something...
-      console.log('modal show');
+      const audioPlayer = <HTMLVideoElement>document.getElementById('myaudio');
+
+      audioPlayer.load();
+      audioPlayer.play();
+
     });
-    $('#modal-center').on('hidden.bs.modal', function (e) {
-      console.log('stop');
+    // 当modal开始关闭时
+    $('#modal-center').on('hide.bs.modal', function (e) {
+      const audioPlayer = <HTMLVideoElement>document.getElementById('myaudio');
+      audioPlayer.pause();
     });
+
   }
 
   // OnDestroy() {
@@ -110,11 +116,11 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
         };
       });
 
-      console.log('tracks: ', this.tracks);
-      setTimeout(() => {
-        const el = document.getElementById('modal-center');
+      // console.log('tracks: ', this.tracks);
+      // setTimeout(() => {
+      //   const el = document.getElementById('modal-center');
 
-      }, 3000);
+      // }, 3000);
 
     });
   }
@@ -123,16 +129,10 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
     this.curTrack = track;
 
     // jQuery方式
-    $('#modal-center').modal('show');
+    // $('#modal-center').modal('show');
     // 取DOM对象然后转换成jQuery对象
-    const el = document.getElementById('modal-center');
-    $(el).modal('show');
-  }
-
-  hideModal() {
-    $('#modal-center').modal('hide');
-    // jQuery查到的对象一般是数组，要取一下第一个
-    // $('#modal-center')[0].modal('hide');
+    // const el = document.getElementById('modal-center');
+    // $(el).modal('show');
   }
 
 

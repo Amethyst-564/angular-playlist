@@ -58,8 +58,9 @@
                         </div>
                         <div class="modal-body">
                             <b>本页仅供试听，下载请去网易云音乐官网。</b>
-                            <audio controls name="media" controlsList="nodownload" oncontextmenu="return false" *ngIf="curTrack">
-                                <source src="{{curTrack.songUrl}}" type="audio/mpeg">
+                            <audio controls id="myaudio" name="media" controlsList="nodownload" oncontextmenu="return false"
+                                *ngIf="curTrack">
+                                <source src="{{curTrack.songUrl}}">
                             </audio>
                         </div>
                         <div class="modal-footer">
