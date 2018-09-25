@@ -1,23 +1,24 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { PlaylistService } from '../service/playlist.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 
 // 引入Lodash
 import * as _ from 'lodash';
-
+declare var $;
 @Component({
   selector: 'app-playlist',
   templateUrl: './playlist.component.html',
   styleUrls: ['./playlist.component.less']
 })
-export class PlaylistComponent implements OnInit {
+export class PlaylistComponent implements OnInit, AfterViewInit {
 
   listId;
   listTitle;
   listCover;
   tracks;
   link;
+  curTrack;
 
   constructor(private playlistService: PlaylistService,
     private route: ActivatedRoute,
@@ -33,6 +34,17 @@ export class PlaylistComponent implements OnInit {
     // this.playlistService.searchData.subscribe(data => {
     //   this.getDetails(data);
     // });
+  }
+
+  ngAfterViewInit() {
+    const el = document.getElementById('modal-center');
+    $('#modal-center').on('shown.bs.modal', function (e) {
+      // do something...
+      console.log('modal show');
+    });
+    $('#modal-center').on('hidden.bs.modal', function (e) {
+      console.log('stop');
+    });
   }
 
   // OnDestroy() {
@@ -54,6 +66,10 @@ export class PlaylistComponent implements OnInit {
 
       // 拼装json
       this.tracks = _.map(root.result.tracks, (track) => {
+
+        // 歌曲id
+        const songId = track.id;
+        const songUrl = `http://music.163.com/song/media/outer/url?id=${songId}.mp3`;
 
         // 歌曲标题
         const songTitle = track.name;
@@ -90,11 +106,35 @@ export class PlaylistComponent implements OnInit {
           'songArtists': songArtists,
           'album': album,
           'duration': duration,
+          'songUrl': songUrl
         };
       });
 
       console.log('tracks: ', this.tracks);
+      setTimeout(() => {
+        const el = document.getElementById('modal-center');
+
+      }, 3000);
+
     });
   }
+
+  showModal(track) {
+    this.curTrack = track;
+
+    // jQuery方式
+    $('#modal-center').modal('show');
+    // 取DOM对象然后转换成jQuery对象
+    const el = document.getElementById('modal-center');
+    $(el).modal('show');
+  }
+
+  hideModal() {
+    $('#modal-center').modal('hide');
+    // jQuery查到的对象一般是数组，要取一下第一个
+    // $('#modal-center')[0].modal('hide');
+  }
+
+
 
 }

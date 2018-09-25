@@ -26,6 +26,7 @@
                         <th scope="col">时长</th>
                         <th scope="col">歌手</th>
                         <th scope="col">专辑</th>
+                        <th scope="col">试听</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,10 +36,47 @@
                         <td scope="row">{{track.duration}}</td>
                         <td scope="row">{{track.songArtists}}</td>
                         <td scope="row">{{track.album}}</td>
-                    </tr>
+                        <td scope="row">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" id="audition" data-toggle="modal" data-target="#modal-center"
+                                (click)="showModal(track)">
+                                <i class="fa fa-play-circle-o" style="color:white" id="audition-play"></i>
+                            </button>
 
+                        </td>
+                    </tr>
                 </tbody>
             </table>
+
+            <!-- Modal -->
+            <div class="modal fade" id="modal-center" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">歌曲试听</h5>
+                        </div>
+                        <div class="modal-body">
+                            <b>本页仅供试听，下载请去网易云音乐官网。</b>
+                            <audio controls name="media" controlsList="nodownload" oncontextmenu="return false" *ngIf="curTrack">
+                                <source src="{{curTrack.songUrl}}" type="audio/mpeg">
+                            </audio>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 </div>
+
+<script>
+    // function toDark() {
+    //     document.getElementById('table').className = "table table-dark table-hover";
+    //     document.getElementById('audition-play').style.color = "balck";
+    // }
+</script>

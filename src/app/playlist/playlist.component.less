@@ -26,9 +26,7 @@
             img {
                 width: 80%;
                 border: 3px solid rgb(255, 255, 255);
-                outline: 1px solid rgba(0, 0, 0, 0.164);
-
-                // 加入图片上浮动画
+                outline: 1px solid rgba(0, 0, 0, 0.164); // 加入图片上浮动画
                 -webkit-transition: all 0.5s;
                 transition: all 0.5s;
                 &:hover {
@@ -61,6 +59,12 @@
                         &:last-child {
                             border-radius: 0 5px 0 0;
                         }
+                    }
+                }
+                .modal-body {
+                    .internal-flex();
+                    audio::-internal-media-controls-download-button {
+                        display: none;
                     }
                 }
             }
