@@ -11,8 +11,8 @@
             <img src="{{listCover}}" alt="Responsive image">
 
             <div id="buttons">
-                <button class="btn btn-outline-secondary" onclick="document.getElementById('table').className = 'table table-light table-hover'">light</button>
-                <button class="btn btn-dark" onclick="document.getElementById('table').className = 'table table-dark table-hover'">dark</button>
+                <button class="btn btn-outline-secondary" (click)="toLight()">light</button>
+                <button class="btn btn-dark" (click)="toDark()">dark</button>
             </div>
         </div>
 
@@ -40,7 +40,7 @@
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" id="audition" data-toggle="modal" data-target="#modal-center"
                                 (click)="showModal(track)">
-                                <i class="fa fa-play-circle-o" style="color:white" id="audition-play"></i>
+                                <i class="fa fa-play-circle-o" style="color:white"></i>
                             </button>
 
                         </td>
@@ -74,10 +74,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    // function toDark() {
-    //     document.getElementById('table').className = "table table-dark table-hover";
-    //     document.getElementById('audition-play').style.color = "balck";
-    // }
-</script>
