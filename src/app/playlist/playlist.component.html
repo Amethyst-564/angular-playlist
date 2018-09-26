@@ -32,12 +32,11 @@
                 <tbody>
                     <tr *ngFor="let track of tracks;let i = index">
                         <th scope="row">{{i+1}}</th>
-                        <td scope="row">{{track.songTitle}}</td>
-                        <td scope="row">{{track.duration}}</td>
-                        <td scope="row">{{track.songArtists}}</td>
-                        <td scope="row">{{track.album}}</td>
-                        <td scope="row">
-                            <!-- Button trigger modal -->
+                        <td>{{track.songTitle}}</td>
+                        <td>{{track.duration}}</td>
+                        <td>{{track.songArtists}}</td>
+                        <td>{{track.album}}</td>
+                        <td>
                             <button type="button" class="btn btn-primary" id="audition" data-toggle="modal" data-target="#modal-center"
                                 (click)="showModal(track)">
                                 <i class="fa fa-play-circle-o" style="color:white"></i>

@@ -47,8 +47,10 @@
         #right {
             .internal-flex(); // 内部flex布局
             height: 89vh;
-            overflow: auto;
+            overflow-y: auto;
             .table {
+                // table-layout: fixed;
+                table-layout: auto;
                 margin-top: 2.1rem;
                 width: 90%;
                 thead {
@@ -78,7 +80,7 @@
     border-radius: @border-radius;
 }
 
-// scrollbar
+// -webkit-scrollbar
 // 内层轨道
 ::-webkit-scrollbar-track-piece {
     background-color: #dddddd;
