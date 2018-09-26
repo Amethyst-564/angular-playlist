@@ -8,7 +8,7 @@
         <div class="col-3" id="left">
             <h2>{{listTitle}}</h2>
             <p>Playlist Id: {{listId}}</p>
-            <img src="{{listCover}}" alt="专辑封面加载中..">
+            <img src="{{listCover}}" alt="封面加载中..">
 
             <div id="buttons">
                 <button class="btn btn-outline-secondary" (click)="toLight()">light</button>
@@ -29,6 +29,7 @@
                         <th scope="col" style="width:8.5%">试听</th>
                     </tr>
                 </thead>
+                <i id="table-loading" class="fa fa-spinner fa-pulse fa-3x" *ngIf="!tracks"></i>
                 <tbody>
                     <tr *ngFor="let track of tracks;let i = index">
                         <th scope="row">{{i+1}}</th>
@@ -41,7 +42,8 @@
                                 (click)="showModal(track)">
                                 <i class="fa fa-play-circle-o" style="color:white"></i>
                             </button> -->
-                            <a href="#" class="audition" data-toggle="modal" data-target="#modal-center" (click)="showModal(track)" style="color:#563d7c;">
+                            <a href="#" class="audition" data-toggle="modal" data-target="#modal-center" (click)="showModal(track)"
+                                style="color:#563d7c;">
                                 <i class="fa fa-play-circle-o fa-2x"></i>
                             </a>
 
