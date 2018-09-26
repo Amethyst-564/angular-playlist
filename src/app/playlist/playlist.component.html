@@ -8,7 +8,7 @@
         <div class="col-3" id="left">
             <h2>{{listTitle}}</h2>
             <p>Playlist Id: {{listId}}</p>
-            <img src="{{listCover}}" alt="Responsive image">
+            <img src="{{listCover}}" alt="专辑封面加载中..">
 
             <div id="buttons">
                 <button class="btn btn-outline-secondary" (click)="toLight()">light</button>
@@ -23,7 +23,7 @@
                     <tr>
                         <th scope="col" style="width:6.4%"> </th>
                         <th scope="col" style="width:27.7%">歌曲标题</th>
-                        <th scope="col" style="width:10.3%">时长</th>
+                        <th scope="col">时长</th>
                         <th scope="col" style="width:20.4%">歌手</th>
                         <th scope="col" style="width:26.7%">专辑</th>
                         <th scope="col" style="width:8.5%">试听</th>
@@ -33,7 +33,7 @@
                     <tr *ngFor="let track of tracks;let i = index">
                         <th scope="row">{{i+1}}</th>
                         <td class="wrap">{{track.songTitle}}</td>
-                        <td>{{track.duration}}</td>
+                        <td class="wrap">{{track.duration}}</td>
                         <td class="wrap">{{track.songArtists}}</td>
                         <td class="wrap">{{track.album}}</td>
                         <td>
@@ -59,7 +59,7 @@
                             <h5 class="modal-title" id="exampleModalCenterTitle">歌曲试听</h5>
                         </div>
                         <div class="modal-body">
-                            <b>本页仅供试听，下载请去网易云音乐官网。</b>
+                            <b>本页仅供试听，喜欢请支持正版。</b>
                             <audio controls id="myaudio" name="media" controlsList="nodownload" oncontextmenu="return false"
                                 *ngIf="curTrack">
                                 <source src="{{curTrack.songUrl}}">

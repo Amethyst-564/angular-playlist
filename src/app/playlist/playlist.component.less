@@ -33,7 +33,21 @@
                 &:hover {
                     transform: translateY(-5px);
                 }
+                &:before {  
+                    content: "\f110" " " attr(alt);
+                  
+                    font-size: 16px;
+                    font-family: FontAwesome;
+                    color: rgb(100, 100, 100);
+                  
+                    display: block;
+                    position: absolute;
+                    z-index: 2;
+                    background-color: #fff;
+                  }
             }
+
+
             h2 {
                 font-size: 1.5rem;
                 text-align: center;
@@ -48,10 +62,10 @@
         #right {
             .internal-flex(); // 内部flex布局
             height: 89vh;
-            overflow: auto;
+            overflow-y: auto;
             .table {
                 // 固定表格布局
-                // table-layout: fixed;
+                table-layout: fixed;
                 margin-top: 2.1rem;
                 width: 90%;
                 thead {
@@ -72,7 +86,7 @@
                         overflow: hidden;
                         text-overflow: ellipsis;
                     }
-                    #audition {
+                    i {
                         height: 2em;
                         width: 2em;
                     }
