@@ -137,19 +137,17 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
 
   toDark() {
     document.getElementById('table').className = 'table table-dark table-hover';
-    const btn = document.getElementsByClassName('btn btn-primary') as HTMLCollectionOf<HTMLElement>;
+    const btn = document.getElementsByClassName('audition') as HTMLCollectionOf<HTMLElement>;
     for (let i = 0; i < btn.length; i++) {
-      btn[i].style.backgroundColor = '#212529';
-      btn[i].style.border = '1.5px solid white';
+      btn[i].style.color = '#FFFFFF';
     }
   }
 
   toLight() {
     document.getElementById('table').className = 'table table-light table-hover';
-    const btn = document.getElementsByClassName('btn btn-primary') as HTMLCollectionOf<HTMLElement>;
+    const btn = document.getElementsByClassName('audition') as HTMLCollectionOf<HTMLElement>;
     for (let i = 0; i < btn.length; i++) {
-      btn[i].style.backgroundColor = '#563d7c';
-      btn[i].style.border = '1px solid #563d7c';
+      btn[i].style.color = '#563d7c';
     }
     // const icon = document.getElementsByClassName('fa fa-play-circle-o') as HTMLCollectionOf<HTMLElement>;
     // for (let i = 0; i < icon.length; i++) {
