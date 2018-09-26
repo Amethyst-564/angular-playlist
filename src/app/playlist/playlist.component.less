@@ -46,6 +46,8 @@
         }
         #right {
             .internal-flex(); // 内部flex布局
+            height: 89vh;
+            overflow: auto;
             .table {
                 margin-top: 2.1rem;
                 width: 90%;
@@ -74,4 +76,24 @@
 
 .table {
     border-radius: @border-radius;
+}
+
+// scrollbar
+// 内层轨道
+::-webkit-scrollbar-track-piece {
+    background-color: #dddddd;
+}
+
+// 整体
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+// 小滑块
+::-webkit-scrollbar-thumb {
+    height: 50px;
+    background: @primary;
+    &:hover {
+        background: lighten(@primary, 10%);
+    }
 }
