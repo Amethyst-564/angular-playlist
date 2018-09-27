@@ -21,8 +21,6 @@ export class LoginService {
 
   login(username: string, password: string): Observable<any> {
 
-    console.log('调用登陆api');
-
     return this.http.post<any>(this.url, {
       'username': username,
       'password': password

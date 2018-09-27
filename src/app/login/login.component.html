@@ -8,13 +8,16 @@
       <form #loginForm="ngForm" id="login-form">
         <div class="form-group">
           <label for="username">username:</label>
-          <input type="text" class="form-control" id="username" [formControl]="username" required>
+          <input type="text" class="form-control" id="username" [formControl]="username" required maxlength="16">
           <div *ngIf="username.hasError('required') && username.dirty" class="alert alert-primary">
             用户名不能为空
           </div>
+          <div *ngIf="username.hasError('pattern') && username.dirty" class="alert alert-primary">
+            用户名不能包含特殊符号
+          </div>
 
           <label for="password">password:</label>
-          <input type="password" class="form-control" id="password" [formControl]="password" required>
+          <input type="password" class="form-control" id="password" [formControl]="password" required maxlength="16">
           <div *ngIf="password.hasError('required') && password.dirty" class="alert alert-primary">
             密码不能为空
           </div>
