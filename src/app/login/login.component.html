@@ -24,6 +24,12 @@
 
         </div>
 
+        <div *ngIf="model.code === 1001 && password.value!=''" class="warn">
+          密码不正确
+        </div>
+        <div *ngIf="model.code === 1002 && username.value!=''" class="warn">
+          用户名不存在
+        </div>
         <button type="submit" class="btn" [class.btn-primary]="!username.hasError('required') && !password.hasError('required')"
           [disabled]="username.hasError('required') || password.hasError('required')" (click)="login(username.value, password.value)">Login</button>
 
