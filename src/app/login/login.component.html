@@ -1,7 +1,7 @@
 <div class="bg"></div>
 <div class="container">
   <!-- header -->
-  <app-navbar></app-navbar>
+  <!-- <app-navbar></app-navbar> -->
   <!-- content -->
 
   <div class="row" id="mid">
@@ -18,19 +18,19 @@
           <!-- login-form -->
           <form #loginForm="ngForm" id="login-form">
             <div class="form-group">
-              <p>登陆</p>
-              <label for="username">username:</label>
-              <input type="text" class="form-control" id="username" [formControl]="username" required maxlength="16">
-              <div *ngIf="username.hasError('required') && username.dirty" class="alert alert-primary">
+              <label for="in_username">用户名：</label>
+              <input type="text" class="form-control" id="in_username" [formControl]="in_username" required maxlength="16">
+              <div *ngIf="in_username.hasError('required') && in_username.dirty" class="alert alert-primary">
                 用户名不能为空
               </div>
-              <div *ngIf="username.hasError('pattern') && username.dirty" class="alert alert-primary">
+              <div *ngIf="in_username.hasError('pattern') && in_username.dirty" class="alert alert-primary">
                 用户名不能包含特殊符号
               </div>
 
-              <label for="password">password:</label>
-              <input type="password" class="form-control" id="password" [formControl]="password" required maxlength="16">
-              <div *ngIf="password.hasError('required') && password.dirty" class="alert alert-primary">
+              <label for="in_password">密码：</label>
+              <input type="password" class="form-control" id="in_password" [formControl]="in_password" required
+                maxlength="16">
+              <div *ngIf="in_password.hasError('required') && in_password.dirty" class="alert alert-primary">
                 密码不能为空
               </div>
 
@@ -42,40 +42,48 @@
             <div *ngIf="model.code === 1002 && username.value!=''" class="warn">
               用户名不存在
             </div>
-            <button type="submit" class="btn" [class.btn-primary]="!username.hasError('required') && !password.hasError('required')"
-              [disabled]="username.hasError('required') || password.hasError('required')" (click)="login(username.value, password.value)">Login</button>
+            <button type="submit" class="btn" [class.btn-primary]="!in_username.hasError('required') && !in_password.hasError('required')"
+              [disabled]="in_username.hasError('required') || in_password.hasError('required')" (click)="login(in_username.value, in_password.value)">Login</button>
 
           </form>
 
           <!-- logon-form -->
           <form #loginForm="ngForm" id="logon-form">
             <div class="form-group">
-              <p>注册</p>
-              <label for="username">username:</label>
-              <input type="text" class="form-control" id="username" [formControl]="username" required maxlength="16">
-              <div *ngIf="username.hasError('required') && username.dirty" class="alert alert-primary">
+              <label for="on_username">用户名：</label>
+              <input type="text" class="form-control" id="on_username" [formControl]="on_username" required maxlength="16">
+              <div *ngIf="on_username.hasError('required') && on_username.dirty" class="alert alert-primary">
                 用户名不能为空
               </div>
-              <div *ngIf="username.hasError('pattern') && username.dirty" class="alert alert-primary">
+              <div *ngIf="on_username.hasError('pattern') && on_username.dirty" class="alert alert-primary">
                 用户名不能包含特殊符号
               </div>
 
-              <label for="password">password:</label>
-              <input type="password" class="form-control" id="password" [formControl]="password" required maxlength="16">
-              <div *ngIf="password.hasError('required') && password.dirty" class="alert alert-primary">
+              <label for="on_password">密码：</label>
+              <input type="password" class="form-control" id="on_password" [formControl]="on_password" required
+                maxlength="16">
+              <div *ngIf="on_password.hasError('required') && on_password.dirty" class="alert alert-primary">
                 密码不能为空
+              </div>
+
+              <label for="on_ackPassword">确认密码：</label>
+              <input type="password" class="form-control" id="on_ackPassword" [formControl]="on_ackPassword" required
+                maxlength="16">
+              <div *ngIf="on_ackPassword.value != on_password.value && on_ackPassword.dirty && on_password" class="alert alert-primary">
+                两次输入密码不一致
               </div>
 
             </div>
 
-            <div *ngIf="model.code === 1001 && password.value!=''" class="warn">
+            <!-- <div *ngIf="model.code === 1001 && password.value!=''" class="warn">
               密码不正确
             </div>
             <div *ngIf="model.code === 1002 && username.value!=''" class="warn">
               用户名不存在
-            </div>
-            <button type="submit" class="btn" [class.btn-primary]="!username.hasError('required') && !password.hasError('required')"
-              [disabled]="username.hasError('required') || password.hasError('required')" (click)="login(username.value, password.value)">Login</button>
+            </div> -->
+            <button type="submit" class="btn" [class.btn-primary]="!on_username.hasError('required') && !on_password.hasError('required') && !on_ackPassword.hasError('required') && on_ackPassword.value === on_password.value"
+              [disabled]="on_username.hasError('required') || on_password.hasError('required') || on_ackPassword.hasError('required') || on_ackPassword.value !== on_password.value"
+              (click)="logon(on_username.value, on_password.value)">注册</button>
 
           </form>
         </div>

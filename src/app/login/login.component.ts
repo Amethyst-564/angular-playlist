@@ -18,13 +18,29 @@ export class LoginComponent implements OnInit {
 
   model = new Result(0, '');
 
-  username = new FormControl('', {
+  in_username = new FormControl('', {
     validators: [Validators.required, Validators.pattern(regex),
     Validators.minLength(4), Validators.maxLength(16)],
     updateOn: 'change'
   });
 
-  password = new FormControl('', {
+  in_password = new FormControl('', {
+    validators: [Validators.required],
+    updateOn: 'change'
+  });
+
+  on_username = new FormControl('', {
+    validators: [Validators.required, Validators.pattern(regex),
+    Validators.minLength(4), Validators.maxLength(16)],
+    updateOn: 'change'
+  });
+
+  on_password = new FormControl('', {
+    validators: [Validators.required],
+    updateOn: 'change'
+  });
+
+  on_ackPassword = new FormControl('', {
     validators: [Validators.required],
     updateOn: 'change'
   });
@@ -44,6 +60,10 @@ export class LoginComponent implements OnInit {
         this.model.msg = data.msg;
       }
     });
+  }
+
+  logon(username: string, password: string) {
+    console.log(username, password);
   }
 
   toLogon() {
