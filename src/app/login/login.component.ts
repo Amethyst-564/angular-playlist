@@ -20,13 +20,13 @@ export class LoginComponent implements OnInit {
 
   username = new FormControl('', {
     validators: [Validators.required, Validators.pattern(regex),
-      Validators.minLength(4), Validators.maxLength(16)],
-    updateOn: 'blur'
+    Validators.minLength(4), Validators.maxLength(16)],
+    updateOn: 'change'
   });
 
   password = new FormControl('', {
     validators: [Validators.required],
-    updateOn: 'blur'
+    updateOn: 'change'
   });
 
   constructor(private loginService: LoginService, private _router: Router) { }
@@ -44,6 +44,22 @@ export class LoginComponent implements OnInit {
         this.model.msg = data.msg;
       }
     });
+  }
+
+  toLogon() {
+    document.getElementById('logon-form').style.display = 'initial';
+    document.getElementById('login-form').style.display = 'none';
+    document.getElementById('logon-footer').style.display = 'initial';
+    document.getElementById('login-footer').style.display = 'none';
+    document.getElementById('title').innerHTML = '加入我们，拯救你的歌单';
+  }
+
+  toLogin() {
+    document.getElementById('login-form').style.display = 'initial';
+    document.getElementById('logon-form').style.display = 'none';
+    document.getElementById('login-footer').style.display = 'initial';
+    document.getElementById('logon-footer').style.display = 'none';
+    document.getElementById('title').innerHTML = '登陆账号，拯救你的歌单';
   }
 
 }

@@ -1,23 +1,87 @@
+@primary: #563d7c;
 .internal-flex() {
     // 内部flex布局
     display: flex;
     flex-direction: column; //垂直flex
     align-items: center;
 }
-.container{
+
+.bg {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background-image: url('../../assets/img/loginbg.png'); // background-size: cover;
+    // background-repeat: no-repeat;
+    opacity: 80%;
+}
+
+.container {
     max-width: 100vw;
     #mid {
         .internal-flex();
-        form {
-            margin-top: 5rem;
-        }
-        .col-3 {
-            max-width: 20rem;
+        .row {
+            .internal-flex();
         }
         .warn {
             color: rgb(206, 28, 28);
             margin-bottom: 10px;
             font-size: 0.9rem;
         }
+        .alert-primary {
+            padding-top: .5rem;
+            padding-bottom: .5rem;
+            margin-bottom: 5px;
+        }
+        #login-card {
+            .internal-flex();
+            min-width: 20rem;
+            margin-top: 5rem; // border: 3px solid black;
+            padding: 0;
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(26, 26, 26, .1);
+            box-sizing: border-box;
+            background-color: white;
+
+            #login-header {
+                width: 100%;
+                padding: 1.4rem .8rem .8rem .8rem;
+                h4 {
+                    color: @primary;
+                } 
+            }
+
+            #login-mid {
+                width: 100%;
+                margin-top: 1rem;
+                margin-bottom: 1.75rem;
+                #logon-form {
+                    display: none;
+                }
+            }
+            
+            #footer {
+            
+                width: 100%;
+                padding: .8rem;
+                background-color: #f6f6f6;
+                border-top: 1px solid #ebebeb;
+                #footer-content {
+                    display: inline-block;
+                    a {
+                        color: @primary;
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+
+                    #logon-footer {
+                        display: none;
+                    }
+                }
+            }
+        }
+        
+        
     }
 }

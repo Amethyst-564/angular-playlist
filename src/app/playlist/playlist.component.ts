@@ -149,10 +149,6 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < btn.length; i++) {
       btn[i].style.color = '#563d7c';
     }
-    // const icon = document.getElementsByClassName('fa fa-play-circle-o') as HTMLCollectionOf<HTMLElement>;
-    // for (let i = 0; i < icon.length; i++) {
-    //   icon[i].style.color = '#563d7c';
-    // }
   }
 
 
