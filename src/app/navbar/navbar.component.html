@@ -47,7 +47,9 @@
 
         </div>
 
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit" id="header-login" (click)="onClick()">Login</button>
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit" id="header-login" (click)="onClick()" *ngIf="!model.loginStatus">登陆</button>
+        
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit" id="header-login" (click)="logout()" *ngIf="model.loginStatus">注销</button>
       </div>
     </nav>
   </div>

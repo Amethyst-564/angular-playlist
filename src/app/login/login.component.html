@@ -36,14 +36,14 @@
 
             </div>
 
-            <div *ngIf="model.code === 1001 && password.value!=''" class="warn">
+            <div *ngIf="model.code === 1001 && in_password.value!=''" class="warn">
               密码不正确
             </div>
-            <div *ngIf="model.code === 1002 && username.value!=''" class="warn">
+            <div *ngIf="model.code === 1002 && in_username.value!=''" class="warn">
               用户名不存在
             </div>
             <button type="submit" class="btn" [class.btn-primary]="!in_username.hasError('required') && !in_password.hasError('required')"
-              [disabled]="in_username.hasError('required') || in_password.hasError('required')" (click)="login(in_username.value, in_password.value)">Login</button>
+              [disabled]="in_username.hasError('required') || in_password.hasError('required')" (click)="login(in_username.value, in_password.value)">登陆</button>
 
           </form>
 
@@ -75,12 +75,12 @@
 
             </div>
 
-            <!-- <div *ngIf="model.code === 1001 && password.value!=''" class="warn">
-              密码不正确
+            <div *ngIf="model.code === 1003 && on_username.value!=''" class="warn">
+              该用户名已存在
             </div>
-            <div *ngIf="model.code === 1002 && username.value!=''" class="warn">
-              用户名不存在
-            </div> -->
+            <div *ngIf="model.code === 0 && on_username.value!=''" class="success">
+              {{model.msg}}
+            </div>
             <button type="submit" class="btn" [class.btn-primary]="!on_username.hasError('required') && !on_password.hasError('required') && !on_ackPassword.hasError('required') && on_ackPassword.value === on_password.value"
               [disabled]="on_username.hasError('required') || on_password.hasError('required') || on_ackPassword.hasError('required') || on_ackPassword.value !== on_password.value"
               (click)="logon(on_username.value, on_password.value)">注册</button>
@@ -93,10 +93,10 @@
       <div class="row" id="footer">
         <div id="footer-content">
           <div id="login-footer">
-            没有帐号？ <a (click)="toLogon()">注册</a>
+            没有帐号？ <a (click)="toLogon()"><b>注册</b></a>
           </div>
           <div id="logon-footer">
-            已有帐号？ <a (click)="toLogin()">登陆</a>
+            已有帐号？ <a (click)="toLogin()"><b>登陆</b></a>
           </div>
 
         </div>

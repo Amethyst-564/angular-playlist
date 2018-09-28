@@ -2,10 +2,10 @@ import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { PlaylistService } from '../service/playlist.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-
 // 引入Lodash
 import * as _ from 'lodash';
 declare var $;
+
 @Component({
   selector: 'app-playlist',
   templateUrl: './playlist.component.html',

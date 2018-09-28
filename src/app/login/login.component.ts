@@ -4,8 +4,9 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 // 表单验证器
 import { Validators } from '@angular/forms';
-import { LoginService } from '../service/login.service';
+import { UserService } from '../service/user.service';
 import { Result } from '../result';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 const regex = /^[a-zA-Z0-9_]+$/;
 
@@ -45,15 +46,16 @@ export class LoginComponent implements OnInit {
     updateOn: 'change'
   });
 
-  constructor(private loginService: LoginService, private _router: Router) { }
+  constructor(private userService: UserService, private _router: Router) { }
 
   ngOnInit() {
   }
 
   login(username: string, password: string) {
-    this.loginService.login(username, password).subscribe(data => {
+    this.userService.login(username, password).subscribe(data => {
       const code = data.code;
       if (code === 0) {
+        NavbarComponent.login(username);
         this._router.navigate(['search']);
       } else {
         this.model.code = code;
@@ -64,6 +66,19 @@ export class LoginComponent implements OnInit {
 
   logon(username: string, password: string) {
     console.log(username, password);
+    this.userService.logon(username, password).subscribe(data => {
+      const code = data.code;
+      if (code === 0) {
+        this.model.code = code;
+        this.model.msg = data.msg + '，3秒后跳转到登陆界面';
+        setTimeout(() => {
+          location.reload();
+        }, 3000);
+      } else {
+        this.model.code = code;
+        this.model.msg = data.msg;
+      }
+    });
   }
 
   toLogon() {
