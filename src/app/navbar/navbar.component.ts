@@ -23,7 +23,9 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private _router: Router,
-  ) { this.model = model; }
+  ) {
+    this.model = model;
+  }
 
   ngOnInit() {
   }
