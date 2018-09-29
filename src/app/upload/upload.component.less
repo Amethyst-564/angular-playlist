@@ -1,0 +1,15 @@
+@primary: #563d7c;
+.internal-flex() {
+    // 内部flex布局
+    display: flex;
+    flex-direction: column; //垂直flex
+    align-items: center;
+}
+
+.container {
+    max-width: 100vw;
+    .row {
+        margin-top: 10rem;
+        .internal-flex();
+    }
+}

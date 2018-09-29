@@ -6,6 +6,7 @@ import { SearchComponent } from './search/search.component';
 import { AboutComponent } from './about/about.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { LoginComponent } from './login/login.component';
+import { UploadComponent } from './upload/upload.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,8 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   // 登录页
   { path: 'login', component: LoginComponent },
+  // 上传
+  { path: 'upload', component: UploadComponent },
   // 404页
   { path: 'notfound', component: NotfoundComponent },
   // TODO 前面所有都不匹配时，重定向到404页

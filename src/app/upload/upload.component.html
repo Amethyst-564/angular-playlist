@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div class="custom-file">
+        <input type="file" class="custom-file-input" id="customFile" (change)="changeFile($event.target.files)" multiple name="files">
+        <label class="custom-file-label" for="customFile">Choose file</label>
+        <button (click)=up()>upload</button>
+      </div>
+    </div>
+  </div>
+</div>

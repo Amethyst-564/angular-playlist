@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-// 响应式表单
-import { FormGroup, FormControl } from '@angular/forms';
-// 表单验证器
-import { Validators } from '@angular/forms';
+// 响应式表单 验证器
+import { Validators, FormControl } from '@angular/forms';
 import { UserService } from '../service/user.service';
 import { Result } from '../result';
 import { NavbarComponent } from '../navbar/navbar.component';

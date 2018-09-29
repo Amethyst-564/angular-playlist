@@ -19,13 +19,13 @@ export class PlaylistService {
 
   // // 新建一个Subject
   // searchData: Subject<any> = new Subject<any>();
-  private url = '/api/playlist/detail';  // 曲库api
+  private playlistUrl = '/api/playlist/detail';  // 曲库api
 
   constructor(private http: HttpClient) { }
 
   getDetails(id: string): Observable<any> {
 
-    const url = `${this.url}?id=${id}`;
+    const url = `${this.playlistUrl}?id=${id}`;
     console.log(url);
     return this.http.get<any>(url, httpOptions);
   }
