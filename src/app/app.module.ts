@@ -13,7 +13,6 @@ import { AboutComponent } from './about/about.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { LoginComponent } from './login/login.component';
 import { UploadComponent } from './upload/upload.component';
-import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -32,7 +31,6 @@ import { FileUploadModule } from 'ng2-file-upload';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    FileUploadModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
