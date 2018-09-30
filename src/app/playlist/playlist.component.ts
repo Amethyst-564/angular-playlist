@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { PlaylistService } from '../service/playlist.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { NavbarComponent } from '../navbar/navbar.component';
 // 引入Lodash
 import * as _ from 'lodash';
 declare var $;
@@ -19,14 +19,15 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
   tracks;
   link;
   curTrack;
+  loginStatus;
 
   constructor(private playlistService: PlaylistService,
     private route: ActivatedRoute,
     private router: Router) {
     this.route.params.subscribe(params => {
       this.getDetails(params.id);
-
     });
+
   }
 
   ngOnInit() {
@@ -34,6 +35,7 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
     // this.playlistService.searchData.subscribe(data => {
     //   this.getDetails(data);
     // });
+    this.loginStatus = NavbarComponent.isLogin();
   }
 
   ngAfterViewInit() {
@@ -105,7 +107,6 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
           sec = '0' + sec;
         }
         duration = min + ':' + sec;
-
 
         return {
           'songTitle': songTitle,

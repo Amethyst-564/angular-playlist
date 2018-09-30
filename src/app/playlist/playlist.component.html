@@ -14,6 +14,10 @@
                 <button class="btn btn-outline-secondary" (click)="toLight()">light</button>
                 <button class="btn btn-dark" (click)="toDark()">dark</button>
             </div>
+
+            <div id="operations">
+                <button class="btn btn-primary" *ngIf="!loginStatus">保存</button>
+            </div>
         </div>
 
         <!-- right -->

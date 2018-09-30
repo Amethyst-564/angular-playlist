@@ -21,6 +21,14 @@ export class NavbarComponent implements OnInit {
     model.username = username;
   }
 
+  public static isLogin() {
+    if (model.loginStatus === true) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   constructor(
     private _router: Router,
   ) {
