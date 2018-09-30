@@ -35,7 +35,6 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
     // this.playlistService.searchData.subscribe(data => {
     //   this.getDetails(data);
     // });
-    this.loginStatus = NavbarComponent.isLogin();
   }
 
   ngAfterViewInit() {
@@ -117,6 +116,7 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
         };
       });
 
+      console.log(this.tracks);
       // console.log('tracks: ', this.tracks);
       // setTimeout(() => {
       //   const el = document.getElementById('modal-center');
@@ -150,6 +150,12 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < btn.length; i++) {
       btn[i].style.color = '#563d7c';
     }
+  }
+
+  save() {
+    this.playlistService.save(this.tracks).subscribe(root => {
+      console.log(root);
+    });
   }
 
 
