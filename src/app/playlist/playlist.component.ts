@@ -2,6 +2,7 @@ import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { PlaylistService } from '../service/playlist.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { LoginComponent } from '../login/login.component';
 // 引入Lodash
 import * as _ from 'lodash';
 declare var $;
@@ -19,7 +20,7 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
   tracks;
   link;
   curTrack;
-  loginStatus;
+  loginStatus = NavbarComponent.isLogin();
 
   constructor(private playlistService: PlaylistService,
     private route: ActivatedRoute,
@@ -153,9 +154,24 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
   }
 
   save() {
-    this.playlistService.save(this.tracks).subscribe(root => {
-      console.log(root);
-    });
+    const user_id = LoginComponent.getUserId();
+    if (user_id === undefined) {
+      console.log('用户未登录');
+    } else {
+      // JSON.stringify将json对象转为json字符串
+      // JSON.parse()将json字符串转为json对象
+      const tracks = JSON.stringify(this.tracks);
+      this.playlistService.save({
+        'user_id': user_id,
+        'playlist_name': this.listTitle,
+        'pid': this.listId,
+        'playlist_cover': this.listCover,
+        'playlist_content': tracks
+      }).subscribe(root => {
+        console.log(root);
+      });
+    }
+
   }
 
 
