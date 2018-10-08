@@ -21,10 +21,10 @@
 
         <ul class="navbar-nav">
           <!-- 下拉菜单 -->
-          <li class="nav-item active" *ngIf="model.loginStatus">
+          <li class="nav-item active" *ngIf="userInfo?.isLogin">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
-              {{model.username}}
+              {{userInfo?.username}}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="#">我收藏的歌单</a>
@@ -51,9 +51,9 @@
 
         </div>
 
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit" id="header-login" (click)="onClick()" *ngIf="!model.loginStatus">登陆</button>
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit" id="header-login" (click)="onClick()" *ngIf="!userInfo?.isLogin">登陆</button>
 
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit" id="header-login" (click)="logout()" *ngIf="model.loginStatus">注销</button>
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit" id="header-login" (click)="logout()" *ngIf="userInfo?.isLogin">注销</button>
       </div>
     </nav>
   </div>

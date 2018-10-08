@@ -2,11 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 
-const model = {
-  loginStatus: false,
-  username: '',
-};
-
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -14,26 +9,9 @@ const model = {
 })
 export class NavbarComponent implements OnInit {
 
-  public model: any;
-
-  public static login(username: string) {
-    model.loginStatus = true;
-    model.username = username;
-  }
-
-  public static isLogin() {
-    if (model.loginStatus === true) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   constructor(
     private _router: Router,
-  ) {
-    this.model = model;
-  }
+  ) { }
 
   ngOnInit() {
   }
@@ -43,8 +21,10 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
-    model.loginStatus = false;
-    model.username = '';
+    localStorage.removeItem('loginInfo');
   }
 
+  get userInfo(): any {
+    return JSON.parse(localStorage.getItem('loginInfo'));
+  }
 }

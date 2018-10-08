@@ -20,7 +20,7 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
   tracks;
   link;
   curTrack;
-  loginStatus = NavbarComponent.isLogin();
+  // loginStatus = NavbarComponent.isLogin();
 
   constructor(private playlistService: PlaylistService,
     private route: ActivatedRoute,
@@ -58,6 +58,10 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
   // OnDestroy() {
   //   this.playlistService.searchData.unsubscribe();
   // }
+
+  get userInfo(): any {
+    return JSON.parse(localStorage.getItem('loginInfo'));
+  }
 
   getDetails(id: string): void {
 
