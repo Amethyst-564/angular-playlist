@@ -21,6 +21,7 @@ export class PlaylistService {
   // searchData: Subject<any> = new Subject<any>();
   private playlistUrl = '/api/playlist/detail';  // 曲库api
   private saveUrl = '/boot/playlist/save';
+  private userListUrl = '/boot/playlist/list';
 
   constructor(private http: HttpClient) { }
 
@@ -35,5 +36,13 @@ export class PlaylistService {
 
     console.log(this.saveUrl);
     return this.http.post<any>(this.saveUrl, tracks);
+  }
+
+  getUserList(username) {
+    // const username: string = localStorage.getItem('username');
+    const param = {
+      username: username
+    };
+    return this.http.get<any>(this.userListUrl, { params: param });
   }
 }

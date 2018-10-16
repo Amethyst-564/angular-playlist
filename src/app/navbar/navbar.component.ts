@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PlaylistService } from '../service/playlist.service';
 
 
 @Component({
@@ -11,6 +12,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private _router: Router,
+    private _playlist: PlaylistService
   ) { }
 
   ngOnInit() {
@@ -26,5 +28,12 @@ export class NavbarComponent implements OnInit {
 
   get userInfo(): any {
     return JSON.parse(localStorage.getItem('loginInfo'));
+  }
+
+  getList() {
+    const username = JSON.parse(localStorage.getItem('loginInfo')).username;
+    this._playlist.getUserList(username).subscribe(root => {
+      console.log(root);
+    });
   }
 }
