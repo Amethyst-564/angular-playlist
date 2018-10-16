@@ -20,7 +20,6 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
   tracks;
   link;
   curTrack;
-  // loginStatus = NavbarComponent.isLogin();
 
   constructor(private playlistService: PlaylistService,
     private route: ActivatedRoute,

@@ -30,12 +30,12 @@
               <a class="dropdown-item" href="#">我收藏的歌单</a>
               <a class="dropdown-item" href="#">歌单管理</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">个人设置</a>
+              <a class="dropdown-item" href="#" (click)="logout()">退出登录</a>
             </div>
           </li>
         </ul>
 
-        <div id="share-icon">
+        <!-- <div id="share-icon">
           <ul class="navbar-nav">
             <li class="nav-item active">
               <a class="nav-link p-2" href="https://github.com/Amethyst-564" target="_blank">
@@ -48,12 +48,11 @@
               </a>
             </li>
           </ul>
+        </div> -->
 
-        </div>
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit" id="header-login" (click)="login()" *ngIf="!userInfo?.isLogin">登陆</button>
 
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit" id="header-login" (click)="onClick()" *ngIf="!userInfo?.isLogin">登陆</button>
-
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit" id="header-login" (click)="logout()" *ngIf="userInfo?.isLogin">注销</button>
+        <!-- <button class="btn btn-outline-light my-2 my-sm-0" type="submit" id="header-login" (click)="logout()" *ngIf="userInfo?.isLogin">注销</button> -->
       </div>
     </nav>
   </div>
