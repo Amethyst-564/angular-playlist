@@ -13,6 +13,7 @@ import { AboutComponent } from './about/about.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { LoginComponent } from './login/login.component';
 import { UploadComponent } from './upload/upload.component';
+import { ListComponent } from './list/list.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { UploadComponent } from './upload/upload.component';
     AboutComponent,
     NotfoundComponent,
     LoginComponent,
-    UploadComponent
+    UploadComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,
