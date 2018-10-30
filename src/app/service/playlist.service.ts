@@ -23,23 +23,25 @@ export class PlaylistService {
   private saveUrl = '/boot/playlist/save';
   private userListUrl = '/boot/playlist/list';
 
+  playlistListData: Subject<any> = new Subject<any>();
+
   constructor(private http: HttpClient) { }
 
+  // 从外部库爬取歌单信息
   getDetails(id: string): Observable<any> {
-
     const url = `${this.playlistUrl}?id=${id}`;
     console.log(url);
     return this.http.get<any>(url, httpOptions);
   }
 
+  // 将爬取的歌单信息持久化到库中
   save(tracks: any): Observable<any> {
-
     console.log(this.saveUrl);
     return this.http.post<any>(this.saveUrl, tracks);
   }
 
+  // 获取用户保存的歌单
   getUserList(username) {
-    // const username: string = localStorage.getItem('username');
     const param = {
       username: username
     };
