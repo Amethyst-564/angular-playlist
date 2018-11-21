@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
         });
         localStorage.setItem('loginInfo', loginInfo);
 
-        this._router.navigate(['search']);
+        this._router.navigate(['']);
       } else {
         this.model.code = code;
         this.model.msg = root.msg;
