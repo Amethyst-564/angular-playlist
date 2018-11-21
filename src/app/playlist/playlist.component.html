@@ -1,6 +1,6 @@
 <div class="row" id="mid">
     <!-- left -->
-    <div class="col-3" id="left">
+    <div class="col-3 flex-box" id="left">
         <h2>{{listTitle}}</h2>
         <p>Playlist Id: {{listId}}</p>
         <img src="{{listCover}}" alt="封面加载中..">
@@ -16,7 +16,7 @@
     </div>
 
     <!-- right -->
-    <div class="col-9" id="right">
+    <div class="col-9 flex-box" id="right">
         <table class="table table-hover" id="table">
             <thead class="thead-dark">
                 <tr>
@@ -59,7 +59,7 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalCenterTitle">歌曲试听</h5>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body flex-box">
                         <b>本页仅供试听，喜欢请支持正版。</b>
                         <audio controls id="myaudio" name="media" controlsList="nodownload" oncontextmenu="return false"
                             *ngIf="curTrack">
