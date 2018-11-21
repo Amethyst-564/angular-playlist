@@ -1,79 +1,78 @@
+<div class="row" id="mid">
+    <!-- left -->
+    <div class="col-3" id="left">
+        <h2>{{listTitle}}</h2>
+        <p>Playlist Id: {{listId}}</p>
+        <img src="{{listCover}}" alt="封面加载中..">
 
-    <div class="row" id="mid">
-        <!-- left -->
-        <div class="col-3" id="left">
-            <h2>{{listTitle}}</h2>
-            <p>Playlist Id: {{listId}}</p>
-            <img src="{{listCover}}" alt="封面加载中..">
-
-            <div id="buttons">
-                <button class="btn btn-outline-secondary" (click)="toLight()">light</button>
-                <button class="btn btn-dark" (click)="toDark()">dark</button>
-            </div>
-
-            <div id="operations">
-                <button class="btn btn-primary" *ngIf="userInfo?.isLogin" (click)="save()">保存</button>
-            </div>
+        <div id="buttons">
+            <button class="btn btn-outline-secondary" (click)="toLight()">light</button>
+            <button class="btn btn-dark" (click)="toDark()">dark</button>
         </div>
 
-        <!-- right -->
-        <div class="col-9" id="right">
-            <table class="table table-hover" id="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col" style="width:6.4%"> </th>
-                        <th scope="col" style="width:27.7%">歌曲标题</th>
-                        <th scope="col">时长</th>
-                        <th scope="col" style="width:20.4%">歌手</th>
-                        <th scope="col" style="width:26.7%">专辑</th>
-                        <th scope="col" style="width:8.5%">试听</th>
-                    </tr>
-                </thead>
-                <i id="table-loading" class="fa fa-spinner fa-pulse fa-3x" *ngIf="!tracks"></i>
-                <tbody>
-                    <tr *ngFor="let track of tracks;let i = index">
-                        <th scope="row">{{i+1}}</th>
-                        <td class="wrap">{{track.songTitle}}</td>
-                        <td class="wrap">{{track.duration}}</td>
-                        <td class="wrap">{{track.songArtists}}</td>
-                        <td class="wrap">{{track.album}}</td>
-                        <td>
-                            <!-- <button type="button" class="btn btn-primary" id="audition" data-toggle="modal" data-target="#modal-center"
+        <div id="operations">
+            <button class="btn btn-primary" *ngIf="userInfo?.isLogin" (click)="save()">保存</button>
+        </div>
+    </div>
+
+    <!-- right -->
+    <div class="col-9" id="right">
+        <table class="table table-hover" id="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col" style="width:6.4%"> </th>
+                    <th scope="col" style="width:27.7%">歌曲标题</th>
+                    <th scope="col">时长</th>
+                    <th scope="col" style="width:20.4%">歌手</th>
+                    <th scope="col" style="width:26.7%">专辑</th>
+                    <th scope="col" style="width:8.5%">试听</th>
+                </tr>
+            </thead>
+            <i id="table-loading" class="fa fa-spinner fa-pulse fa-3x" *ngIf="!tracks"></i>
+            <tbody>
+                <tr *ngFor="let track of tracks;let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <td class="wrap">{{track.songTitle}}</td>
+                    <td class="wrap">{{track.duration}}</td>
+                    <td class="wrap">{{track.songArtists}}</td>
+                    <td class="wrap">{{track.album}}</td>
+                    <td>
+                        <!-- <button type="button" class="btn btn-primary" id="audition" data-toggle="modal" data-target="#modal-center"
                                 (click)="showModal(track)">
                                 <i class="fa fa-play-circle-o" style="color:white"></i>
                             </button> -->
-                            <a href="#" class="audition" data-toggle="modal" data-target="#modal-center" (click)="showModal(track)"
-                                style="color:#563d7c;">
-                                <i class="far fa-play-circle fa-2x"></i>
-                            </a>
+                        <a href="#" class="audition" data-toggle="modal" data-target="#modal-center" (click)="showModal(track)"
+                            style="color:#563d7c;">
+                            <i class="far fa-play-circle fa-2x"></i>
+                        </a>
 
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-            <!-- Modal -->
-            <div class="modal fade" id="modal-center" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalCenterTitle">歌曲试听</h5>
-                        </div>
-                        <div class="modal-body">
-                            <b>本页仅供试听，喜欢请支持正版。</b>
-                            <audio controls id="myaudio" name="media" controlsList="nodownload" oncontextmenu="return false"
-                                *ngIf="curTrack">
-                                <source src="{{curTrack.songUrl}}">
-                            </audio>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
-                        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="modal-center" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">歌曲试听</h5>
+                    </div>
+                    <div class="modal-body">
+                        <b>本页仅供试听，喜欢请支持正版。</b>
+                        <audio controls id="myaudio" name="media" controlsList="nodownload" oncontextmenu="return false"
+                            *ngIf="curTrack">
+                            <source src="{{curTrack.songUrl}}">
+                        </audio>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
                     </div>
                 </div>
             </div>
-
-
         </div>
+
+
     </div>
+</div>

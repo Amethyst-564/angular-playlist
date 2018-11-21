@@ -35,6 +35,6 @@ export class NavbarComponent implements OnInit {
     this._playlist.getPlaylistList(username).subscribe(root => {
       this._playlist.playlistListData.next(root);
     });
-    this._router.navigate(['/index/list']);
+    this._router.navigate(['list']);
   }
 }
