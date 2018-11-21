@@ -21,7 +21,7 @@ export class PlaylistService {
   // searchData: Subject<any> = new Subject<any>();
   private playlistUrl = '/api/playlist/detail';  // 曲库api
   private saveUrl = '/boot/playlist/save';
-  private userListUrl = '/boot/playlist/list';
+  private playlistListUrl = '/boot/playlist/list';
 
   playlistListData: Subject<any> = new Subject<any>();
 
@@ -41,10 +41,10 @@ export class PlaylistService {
   }
 
   // 获取用户保存的歌单
-  getUserList(username) {
+  getPlaylistList(username) {
     const param = {
       username: username
     };
-    return this.http.get<any>(this.userListUrl, { params: param });
+    return this.http.get<any>(this.playlistListUrl, { params: param });
   }
 }

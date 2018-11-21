@@ -11,10 +11,9 @@ export class NotfoundComponent implements OnInit {
   constructor(private _router: Router) { }
 
   ngOnInit() {
-    // setTimeout(() => {
-    //   this._router.navigate(['']);
-    // }, 3000);
-
+    setTimeout(() => {
+      this._router.navigate(['']);
+    }, 3000);
   }
 
 }

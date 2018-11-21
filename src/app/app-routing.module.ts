@@ -7,6 +7,7 @@ import { AboutComponent } from './about/about.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { LoginComponent } from './login/login.component';
 import { UploadComponent } from './upload/upload.component';
+import { ListComponent } from './list/list.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,8 @@ const routes: Routes = [
   // 歌单组件
   { path: 'playlist', component: PlaylistComponent },
   { path: 'playlist/:id', component: PlaylistComponent },
+  // 歌单列表
+  { path: 'list', component: ListComponent },
   // 搜索组件
   { path: 'search', component: SearchComponent },
   // about

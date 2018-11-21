@@ -32,8 +32,9 @@ export class NavbarComponent implements OnInit {
 
   getList() {
     const username = JSON.parse(localStorage.getItem('loginInfo')).username;
-    this._playlist.getUserList(username).subscribe(root => {
-      console.log(root);
+    this._playlist.getPlaylistList(username).subscribe(root => {
+      this._playlist.playlistListData.next(root);
     });
+    this._router.navigate(['/list']);
   }
 }
