@@ -27,6 +27,7 @@ const routes: Routes = [
       { path: 'about', component: AboutComponent, pathMatch: 'prefix' },
       { path: 'upload', component: UploadComponent, pathMatch: 'prefix' },
       { path: 'notfound', component: NotfoundComponent, pathMatch: 'prefix' },
+      { path: '**', redirectTo: 'notfound', pathMatch: 'full' }
     ]
   }
 ];
