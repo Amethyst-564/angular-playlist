@@ -7,24 +7,22 @@
     box-shadow: 0 0 0 0.2rem rgba(@color, 0.25);
 }
 
-.internal-flex() {
-    // 内部flex布局
-    display: flex;
-    flex-direction: column; //垂直flex
-    align-items: center;
-}
-
 * {
     margin: 0;
     padding: 0;
 }
 
-html, body {
+html,
+body {
     height: 100vh;
     width: 100vw;
 }
 
 .main {
+    height: 100%;
+}
+
+.cus-theme {
     .form-control {
         &:hover,
         &:focus {
@@ -71,8 +69,24 @@ html, body {
     }
 }
 
-.flex-box {
-    .internal-flex();
+.flex-x {
+    // x向堆叠
+    display: flex;
+    align-items: center;
+}
+
+.flex-y {
+    // y向堆叠
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flex-xy {
+    // 居中
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .bd-callout {
