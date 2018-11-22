@@ -88,7 +88,64 @@ body {
     align-items: center;
     justify-content: center;
 }
-
+.img {
+    width: 80%;
+    border: 3px solid rgb(255, 255, 255);
+    outline: 1px solid rgba(0, 0, 0, 0.164); // 加入图片上浮动画
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    &:hover {
+        transform: translateY(-5px);
+    } // 加载前样式
+    &:before {
+        content: "\f005" " " attr(alt);
+        font-weight: 900;
+        font-size: 16px;
+        font-family: 'Font Awesome\ 5 Free';
+        color: rgb(100, 100, 100);
+        display: block;
+        position: absolute;
+        z-index: 2;
+        background-color: #fff;
+    }
+}
+.table {
+    // 固定表格布局
+    table-layout: fixed;
+    margin-top: 2.1rem;
+    thead {
+        th {
+            border-top: 0;
+            // 添加圆角
+            &:first-child {
+                border-radius: .25rem 0 0 0;
+            }
+            &:last-child {
+                border-radius: 0 .25rem 0 0;
+            }
+        }
+    }
+    tbody {
+        .wrap {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}
+.left-board {
+    z-index: 1000;
+    border-right: 1px solid rgba(0, 0, 0, .07);
+    h2 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    #buttons {
+        margin-top: 20px;
+        button {
+            margin: 0 10px;
+        }
+    }
+}
 .bd-callout {
     padding: 1.25rem;
     margin-top: 1.25rem;

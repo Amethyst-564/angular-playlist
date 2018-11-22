@@ -1,47 +1,8 @@
 @primary: #563d7c;
-@border-radius: .25rem;
-.button-style(@color: white) {
-    font-weight: 500;
-    border-radius: .25rem;
-    border: 2px solid @color;
-}
 
-#left {
+.left-board {
     margin-top: 2.1rem;
-    position: sticky; // 把左侧固定住
-    top: 6rem;
-    z-index: 1000;
-    border-right: 1px solid rgba(0, 0, 0, .07);
-    img {
-        width: 80%;
-        border: 3px solid rgb(255, 255, 255);
-        outline: 1px solid rgba(0, 0, 0, 0.164); // 加入图片上浮动画
-        -webkit-transition: all 0.5s;
-        transition: all 0.5s;
-        &:hover {
-            transform: translateY(-5px);
-        } // 加载前样式
-        &:before {
-            content: "\f110" " " attr(alt);
-            font-size: 16px;
-            font-family: FontAwesome;
-            color: rgb(100, 100, 100);
-            display: block;
-            position: absolute;
-            z-index: 2;
-            background-color: #fff;
-        }
-    }
-    h2 {
-        font-size: 1.5rem;
-        text-align: center;
-    }
-    #buttons {
-        margin-top: 20px;
-        button {
-            margin: 0 10px;
-        }
-    }
+
 }
 
 #right {
@@ -53,37 +14,12 @@
         left: 45%;
     }
     .table {
-        // 固定表格布局
-        table-layout: fixed;
         margin-top: 2.1rem;
         width: 90%;
-        thead {
-            th {
-                border-top: 0; // 去掉默认边框
-                // 添加圆角
-                &:first-child {
-                    border-radius: .25rem 0 0 0;
-                }
-                &:last-child {
-                    border-radius: 0 .25rem 0 0;
-                }
-            }
-        }
-        tbody {
-            .wrap {
-                // padding-top: 
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-        }
     }
     .modal-body {
         audio::-internal-media-controls-download-button {
             display: none;
         }
     }
-}
-
-.table {
-    border-radius: @border-radius;
 }
