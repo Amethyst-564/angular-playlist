@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlaylistService } from '../service/playlist.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -9,11 +10,24 @@ import { PlaylistService } from '../service/playlist.service';
 })
 export class ListComponent implements OnInit {
 
-  constructor(private _playlist: PlaylistService) { }
+  playlistList;
+
+  constructor(
+    private _playlist: PlaylistService,
+    private route: ActivatedRoute,
+  ) {
+    console.log('constructor');
+    const username = this.route.snapshot.queryParamMap.get('username');
+    this.getPlaylistList(username);
+  }
 
   ngOnInit() {
-    this._playlist.playlistListData.subscribe(root => {
-      console.log(root);
+    console.log('init');
+  }
+
+  public getPlaylistList(username: string) {
+    this._playlist.getPlaylistList(username).subscribe(root => {
+      this.playlistList = root.data;
     });
   }
 

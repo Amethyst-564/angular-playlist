@@ -7,7 +7,6 @@ import { Result } from '../result';
 import { NavbarComponent } from '../navbar/navbar.component';
 
 const regex = /^[a-zA-Z0-9_]+$/;
-// let user_id;
 
 @Component({
   selector: 'app-login',
@@ -45,10 +44,6 @@ export class LoginComponent implements OnInit {
     updateOn: 'change'
   });
 
-  static getUserId() {
-    // return user_id;
-  }
-
   constructor(private userService: UserService, private _router: Router) { }
 
   ngOnInit() {
@@ -58,10 +53,6 @@ export class LoginComponent implements OnInit {
     this.userService.login(username, password).subscribe(root => {
       const code = root.code;
       if (code === 0) {
-        // old
-        // NavbarComponent.login(username);
-        // user_id = root.data.user_id;
-        // new
         const loginInfo = JSON.stringify({
           'isLogin': true,
           'username': username,

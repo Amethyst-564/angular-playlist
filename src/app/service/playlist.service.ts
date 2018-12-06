@@ -41,7 +41,7 @@ export class PlaylistService {
   }
 
   // 获取用户保存的歌单
-  getPlaylistList(username) {
+  getPlaylistList(username): Observable<any> {
     const param = {
       username: username
     };

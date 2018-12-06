@@ -54,10 +54,6 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
 
   }
 
-  // OnDestroy() {
-  //   this.playlistService.searchData.unsubscribe();
-  // }
-
   get userInfo(): any {
     return JSON.parse(localStorage.getItem('loginInfo'));
   }
@@ -120,24 +116,11 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
         };
       });
 
-      console.log(this.tracks);
-      // console.log('tracks: ', this.tracks);
-      // setTimeout(() => {
-      //   const el = document.getElementById('modal-center');
-
-      // }, 3000);
-
     });
   }
 
   showModal(track) {
     this.curTrack = track;
-
-    // jQuery方式
-    // $('#modal-center').modal('show');
-    // 取DOM对象然后转换成jQuery对象
-    // const el = document.getElementById('modal-center');
-    // $(el).modal('show');
   }
 
   toDark() {
@@ -157,15 +140,13 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
   }
 
   save() {
-    const user_id = LoginComponent.getUserId();
-    if (user_id === undefined) {
+    const userId = JSON.parse(localStorage.getItem('loginInfo')).userId;
+    if (userId === undefined) {
       console.log('用户未登录');
     } else {
-      // JSON.stringify将json对象转为json字符串
-      // JSON.parse()将json字符串转为json对象
       const tracks = JSON.stringify(this.tracks);
       this.playlistService.save({
-        'user_id': user_id,
+        'user_id': userId,
         'playlist_name': this.listTitle,
         'pid': this.listId,
         'playlist_cover': this.listCover,
@@ -176,7 +157,5 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
     }
 
   }
-
-
 
 }
