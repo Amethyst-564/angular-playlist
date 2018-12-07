@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { SearchComponent } from './search/search.component';
 import { AboutComponent } from './about/about.component';
-import { NotfoundComponent } from './notfound/notfound.component';
+import { ErrorComponent } from './error/error.component';
 import { LoginComponent } from './login/login.component';
 import { UploadComponent } from './upload/upload.component';
 import { ListComponent } from './list/list.component';
@@ -26,8 +26,8 @@ const routes: Routes = [
       { path: 'search', component: SearchComponent, pathMatch: 'prefix' },
       { path: 'about', component: AboutComponent, pathMatch: 'prefix' },
       { path: 'upload', component: UploadComponent, pathMatch: 'prefix' },
-      { path: 'notfound', component: NotfoundComponent, pathMatch: 'prefix' },
-      { path: '**', redirectTo: 'notfound', pathMatch: 'full' }
+      { path: 'error', component: ErrorComponent, pathMatch: 'prefix' },
+      { path: '**', redirectTo: 'error', pathMatch: 'full' }
     ]
   }
 ];

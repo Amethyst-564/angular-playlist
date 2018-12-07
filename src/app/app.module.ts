@@ -10,7 +10,7 @@ import { SearchComponent } from './search/search.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AboutComponent } from './about/about.component';
-import { NotfoundComponent } from './notfound/notfound.component';
+import { ErrorComponent } from './error/error.component';
 import { LoginComponent } from './login/login.component';
 import { UploadComponent } from './upload/upload.component';
 import { ListComponent } from './list/list.component';
@@ -23,7 +23,7 @@ import { HomeComponent } from './home/home.component';
     SearchComponent,
     NavbarComponent,
     AboutComponent,
-    NotfoundComponent,
+    ErrorComponent,
     LoginComponent,
     UploadComponent,
     ListComponent,
