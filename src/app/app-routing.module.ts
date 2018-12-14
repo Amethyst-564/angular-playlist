@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { UploadComponent } from './upload/upload.component';
 import { ListComponent } from './list/list.component';
 import { HomeComponent } from './home/home.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
       { path: 'search', component: SearchComponent, pathMatch: 'prefix' },
       { path: 'about', component: AboutComponent, pathMatch: 'prefix' },
       { path: 'upload', component: UploadComponent, pathMatch: 'prefix' },
+      { path: 'user-detail', component: UserDetailComponent, pathMatch: 'prefix' },
       { path: 'error', component: ErrorComponent, pathMatch: 'prefix' },
       { path: '**', redirectTo: 'error', pathMatch: 'full' }
     ]

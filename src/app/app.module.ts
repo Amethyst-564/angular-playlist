@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { UploadComponent } from './upload/upload.component';
 import { ListComponent } from './list/list.component';
 import { HomeComponent } from './home/home.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HomeComponent } from './home/home.component';
     LoginComponent,
     UploadComponent,
     ListComponent,
-    HomeComponent
+    HomeComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,

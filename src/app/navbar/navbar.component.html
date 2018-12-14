@@ -26,8 +26,8 @@
               {{userInfo?.username}}
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="javascript:void(0)" (click)="getList()">我收藏的歌单</a>
-              <a class="dropdown-item" href="#">歌单管理</a>
+              <a class="dropdown-item" routerLink="/list">我收藏的歌单</a>
+              <a class="dropdown-item" routerLink="/user-detail">我的资料</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#" (click)="logout()">退出登录</a>
             </div>

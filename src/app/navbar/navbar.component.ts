@@ -30,11 +30,4 @@ export class NavbarComponent implements OnInit {
     return JSON.parse(localStorage.getItem('loginInfo'));
   }
 
-  getList() {
-    const username = JSON.parse(localStorage.getItem('loginInfo')).username;
-    if (!username) {
-      console.log('用户未登录');
-    }
-    this._router.navigate(['list'], { queryParams: { username: username } });
-  }
 }

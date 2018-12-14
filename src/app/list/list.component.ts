@@ -10,25 +10,32 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ListComponent implements OnInit {
 
-  playlistList;
+  username: string;
+  playlistList: any;
 
   constructor(
     private _playlist: PlaylistService,
     private route: ActivatedRoute,
   ) {
     console.log('constructor');
-    const username = this.route.snapshot.queryParamMap.get('username');
-    this.getPlaylistList(username);
+    // const username = this.route.snapshot.queryParamMap.get('username');
+    this.username = JSON.parse(localStorage.getItem('loginInfo')).username;
   }
 
   ngOnInit() {
     console.log('init');
+    this.getPlaylistList();
   }
 
-  public getPlaylistList(username: string) {
-    this._playlist.getPlaylistList(username).subscribe(root => {
-      this.playlistList = root.data;
-    });
+  public getPlaylistList() {
+    // const username = JSON.parse(localStorage.getItem('loginInfo')).username;
+    if (!this.username) {
+      console.log('用户未登录');
+    } else {
+      this._playlist.getPlaylistList(this.username).subscribe(root => {
+        this.playlistList = root.data;
+      });
+    }
   }
 
 }
