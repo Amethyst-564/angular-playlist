@@ -10,16 +10,9 @@ import { PlaylistService } from '../service/playlist.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(
-    private _router: Router,
-    private _playlist: PlaylistService
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  login() {
-    this._router.navigate(['login']);
   }
 
   logout() {

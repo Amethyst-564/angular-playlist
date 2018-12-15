@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-error',
@@ -8,37 +8,65 @@ import { Router } from '@angular/router';
 })
 export class ErrorComponent implements OnInit {
 
-  type = 0;
+  type: string;  // 0:404 1:error
+  code: string;
   errorData = {
-    content: '',
+    title: '',
+    msg: '',
     redirectTo: '',
     url: '',
   };
-  errorContent;
 
-  constructor(private _router: Router) { }
+  errorEnum = {
+    0: {
+      msg: '该页面不存在',
+      redirectTo: '主页',
+      url: '/',
+    },
+    1: {
+      msg: '您还未登录',
+      redirectTo: '登录页面',
+      url: '/login',
+    }
+  };
+
+  constructor(
+    private _router: Router,
+    private _route: ActivatedRoute,
+  ) {
+    // type默认0
+    this.type = this._route.snapshot.queryParamMap.get('type') || '0';
+    this.code = this._route.snapshot.queryParamMap.get('code');
+  }
 
   ngOnInit() {
     this.initError();
   }
 
-  public initError(type?: number) {
-    switch (type) {
-      case 1:
-        console.log('case 1');
-        break;
-      default:
-        this.notfound();
-        break;
+  public initError() {
+    if (this.type === '0') {
+      this.errorData.title = '4😵4';
+      // code 默认0
+      const code = this.code || '0';
+      this.errorData.msg = this.errorEnum[code].msg;
+      this.errorData.redirectTo = this.errorEnum[code].redirectTo;
+      this.errorData.url = this.errorEnum[code].url;
     }
+    if (this.type === '1') {
+      this.errorData.title = 'ERR😵R';
+      // code 默认1
+      const code = this.code || '1';
+      this.errorData.msg = this.errorEnum[code].msg;
+      this.errorData.redirectTo = this.errorEnum[code].redirectTo;
+      this.errorData.url = this.errorEnum[code].url;
+    }
+    setTimeout(() => {
+      this.redirectTo();
+    }, 3000);
   }
 
-  public notfound() {
-    this.errorData.content = '该页面不存在';
-    this.errorData.redirectTo = '主页';
-    setTimeout(() => {
-      this._router.navigate(['']);
-    }, 3000);
+  public redirectTo() {
+    this._router.navigate([this.errorData.url]);
   }
 
 }

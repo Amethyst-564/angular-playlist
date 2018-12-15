@@ -22,9 +22,9 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
   curTrack;
 
   constructor(private playlistService: PlaylistService,
-    private route: ActivatedRoute,
-    private router: Router) {
-    this.route.params.subscribe(params => {
+    private _route: ActivatedRoute,
+    private _router: Router) {
+    this._route.params.subscribe(params => {
       this.getDetails(params.id);
     });
 
@@ -142,7 +142,7 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
   save() {
     const userId = JSON.parse(localStorage.getItem('loginInfo')).userId;
     if (userId === undefined) {
-      console.log('用户未登录');
+      this._router.navigate(['/error'], { queryParams: { type: '1', code: '1' } });
     } else {
       const tracks = JSON.stringify(this.tracks);
       this.playlistService.save({
