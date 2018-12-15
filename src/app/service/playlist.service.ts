@@ -41,10 +41,14 @@ export class PlaylistService {
   }
 
   // 获取用户保存的歌单
-  getPlaylistList(username): Observable<any> {
-    const param = {
-      username: username
-    };
-    return this.http.get<any>(this.playlistListUrl, { params: param });
+  getPlaylistList(username: string): Observable<any> {
+    // const param = {
+    //   username: username
+    // };
+    return this.http.get<any>(this.playlistListUrl, {
+      params: {
+        'username': username
+      }
+    });
   }
 }

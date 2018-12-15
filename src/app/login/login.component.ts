@@ -71,6 +71,7 @@ export class LoginComponent implements OnInit {
   logon(username: string, password: string) {
     console.log(username, password);
     this.userService.logon(username, password).subscribe(data => {
+      console.log('注册', data);
       const code = data.code;
       if (code === 0) {
         this.model.code = code;
