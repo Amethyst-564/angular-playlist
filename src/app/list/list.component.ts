@@ -44,7 +44,9 @@ export class ListComponent implements OnInit {
         console.log(root);
         this.playlistList = root.data;
         _.each(this.playlistList, (playlist) => {
-          playlist.time = moment(playlist.time).format('YYYY-MM-DD HH:mm:ss');
+          const latestDetail = _.sortBy(playlist.detail, ['add_time'])[playlist.detail.length - 1];
+          playlist.latest_time = moment(latestDetail.add_time).format('YYYY-MM-DD HH:mm:ss');
+          playlist.latest_cover = latestDetail.cover;
         });
       });
     }

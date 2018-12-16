@@ -27,6 +27,11 @@ export class ErrorComponent implements OnInit {
       msg: '您还未登录',
       redirectTo: '登录页面',
       url: '/login',
+    },
+    1001: {
+      msg: '参数不正确',
+      redirectTo: '主页',
+      url: '/',
     }
   };
 

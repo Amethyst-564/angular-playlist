@@ -28,7 +28,7 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
       if (params.id) {
         this.getDetails(params.id);
       } else {
-        console.log('id不存在');
+        this._router.navigate(['/error'], { queryParams: { type: '1', code: '1001' } });
       }
     });
 
