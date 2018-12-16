@@ -25,7 +25,11 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
     private _route: ActivatedRoute,
     private _router: Router) {
     this._route.params.subscribe(params => {
-      this.getDetails(params.id);
+      if (params.id) {
+        this.getDetails(params.id);
+      } else {
+        console.log('id不存在');
+      }
     });
 
   }
