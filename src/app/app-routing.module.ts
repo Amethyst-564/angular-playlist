@@ -22,7 +22,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'search', pathMatch: 'full' },
       { path: 'playlist', component: PlaylistComponent, pathMatch: 'prefix' },
-      { path: 'playlist/:id', component: PlaylistComponent, pathMatch: 'prefix' },
+      { path: 'playlist/r/:pid', component: PlaylistComponent, pathMatch: 'prefix' },
+      { path: 'playlist/l/:playlistId', component: PlaylistComponent, pathMatch: 'prefix' },
       { path: 'list', component: ListComponent, pathMatch: 'prefix' },
       { path: 'search', component: SearchComponent, pathMatch: 'prefix' },
       { path: 'about', component: AboutComponent, pathMatch: 'prefix' },

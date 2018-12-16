@@ -25,8 +25,10 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
     private _route: ActivatedRoute,
     private _router: Router) {
     this._route.params.subscribe(params => {
-      if (params.id) {
-        this.getDetails(params.id);
+      if (params.pid) {
+        this.getDetailsFromRemote(params.pid);
+      } else if (params.playlistId) {
+        this.getDetailsFromLocal(params.playlistId);
       } else {
         this._router.navigate(['/error'], { queryParams: { type: '1', code: '1001' } });
       }
@@ -62,7 +64,11 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
     return JSON.parse(localStorage.getItem('loginInfo'));
   }
 
-  getDetails(id: string): void {
+  getDetailsFromLocal(playlistId: string): void {
+    console.log('来自本地数据源');
+  }
+
+  getDetailsFromRemote(id: string): void {
 
     this.playlistService.getDetails(id).subscribe(root => {
 

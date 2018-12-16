@@ -63,4 +63,8 @@ export class ListComponent implements OnInit {
     }
   }
 
+  public toPlaylist(playlistId: string) {
+    this._router.navigate(['/playlist/l', playlistId]);
+  }
+
 }

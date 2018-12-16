@@ -46,7 +46,7 @@ export class SearchComponent implements OnInit {
 
     // // send data
     // this.playlistService.searchData.next(playlistId);
-    this._router.navigate(['/playlist', playlistId]);
+    this._router.navigate(['/playlist/r', playlistId]);
 
   }
 }
