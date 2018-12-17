@@ -19,19 +19,29 @@ export class PlaylistService {
 
   // // 新建一个Subject
   // searchData: Subject<any> = new Subject<any>();
-  private playlistUrl = '/api/playlist/detail';  // 曲库api
+  private remoteDetailUrl = '/api/playlist/detail';  // 远程曲库api
+  private localDetailUrl = '/boot/playlist/detail';
   private saveUrl = '/boot/playlist/save';
-  private playlistListUrl = '/boot/playlist/list';
-
-  playlistListData: Subject<any> = new Subject<any>();
+  private listUrl = '/boot/playlist/list';
+  private deleteDetailUrl = '/boot/playlist/delete_detail';
 
   constructor(private http: HttpClient) { }
 
   // 从外部库爬取歌单信息
-  getDetails(id: string): Observable<any> {
-    const url = `${this.playlistUrl}?id=${id}`;
+  getDetailsFromRemote(id: string): Observable<any> {
+    const url = `${this.remoteDetailUrl}?id=${id}`;
     console.log(url);
     return this.http.get<any>(url, httpOptions);
+  }
+
+  getDetailsFromLocal(playlistId: string): Observable<any> {
+    console.log(this.localDetailUrl);
+    return this.http.get<any>(this.localDetailUrl, {
+      params: {
+        'id': playlistId,
+      }
+    });
+
   }
 
   // 将爬取的歌单信息持久化到库中
@@ -41,13 +51,19 @@ export class PlaylistService {
   }
 
   // 获取用户保存的歌单
-  getPlaylistList(username: string): Observable<any> {
-    // const param = {
-    //   username: username
-    // };
-    return this.http.get<any>(this.playlistListUrl, {
+  getList(username: string): Observable<any> {
+    console.log(this.listUrl);
+    return this.http.get<any>(this.listUrl, {
       params: {
-        'username': username
+        'username': username,
+      }
+    });
+  }
+
+  deleteDetail(playlistDetailId: string): Observable<any> {
+    return this.http.delete<any>(this.deleteDetailUrl, {
+      params: {
+        'id': playlistDetailId,
       }
     });
   }

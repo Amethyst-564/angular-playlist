@@ -40,7 +40,7 @@ export class ListComponent implements OnInit {
     if (!this.loginInfo) {
       this._router.navigate(['/error'], { queryParams: { type: '1', code: '1' } });
     } else {
-      this._playlist.getPlaylistList(this.loginInfo.username).subscribe(root => {
+      this._playlist.getList(this.loginInfo.username).subscribe(root => {
         console.log(root);
         this.playlistList = root.data;
         _.each(this.playlistList, (playlist) => {

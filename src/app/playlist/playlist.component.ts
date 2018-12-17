@@ -14,12 +14,12 @@ declare var $;
 })
 export class PlaylistComponent implements OnInit, AfterViewInit {
 
-  listId;
-  listTitle;
-  listCover;
-  tracks;
-  link;
-  curTrack;
+  listId: string;
+  listTitle: string;
+  listCover: string;
+  tracks: any;
+  curTrack: any;
+  playlistDetailId: any;
 
   constructor(private playlistService: PlaylistService,
     private _route: ActivatedRoute,
@@ -66,11 +66,19 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
 
   getDetailsFromLocal(playlistId: string): void {
     console.log('来自本地数据源');
+    this.playlistService.getDetailsFromLocal(playlistId).subscribe(root => {
+      console.log(root);
+      this.listId = root.data.pid;
+      this.listTitle = root.data.name;
+      this.listCover = root.data.detail[0].cover;
+      this.tracks = JSON.parse(root.data.detail[0].content);
+      this.playlistDetailId = root.data.detail[0].playlist_detail_id;
+    });
   }
 
   getDetailsFromRemote(id: string): void {
 
-    this.playlistService.getDetails(id).subscribe(root => {
+    this.playlistService.getDetailsFromRemote(id).subscribe(root => {
 
       console.log('获取到歌单json');
 
@@ -166,6 +174,12 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
       });
     }
 
+  }
+
+  delete(playlistDetailId: any) {
+    this.playlistService.deleteDetail(playlistDetailId).subscribe(root => {
+      console.log(root);
+    });
   }
 
 }

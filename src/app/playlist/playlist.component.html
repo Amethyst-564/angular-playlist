@@ -12,6 +12,7 @@
 
         <div id="operations">
             <button class="btn btn-primary" *ngIf="userInfo?.isLogin" (click)="save()">保存</button>
+            <button class="btn btn-primary" *ngIf="userInfo?.isLogin" (click)="delete(playlistDetailId)">删除</button>
         </div>
     </div>
 
