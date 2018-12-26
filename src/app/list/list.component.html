@@ -25,7 +25,7 @@
                 <img src="{{playlist.latest_cover}}" alt="歌单封面.." class="img">
               </div>
 
-              <div class="col-10">
+              <div class="col-10 card-right">
                 <div class="row">
                   <h4 class="card-title">{{playlist.name}} </h4>
                   <div class="dropdown card-options">
@@ -39,9 +39,12 @@
                   </div>
                 </div>
                 <div class="row">
-                  <p class="card-text">收藏时间：{{playlist.latest_time}}</p>
+                    <p class="card-text">已保存{{playlist.detail.length}}个版本</p>
                 </div>
                 <div class="row">
+                  <p class="card-text">最后一次保存时间：{{playlist.latest_time}}</p>
+                </div>
+                <div class="row bottom-actions">
                   <a href="javascript:void(0)" class="btn btn-primary" (click)="toPlaylist(playlist.playlist_id)">查看详情</a>
                 </div>
               </div>
