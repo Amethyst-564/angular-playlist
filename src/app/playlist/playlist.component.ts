@@ -30,7 +30,7 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
       } else if (params.playlistId) {
         this.getDetailsFromLocal(params.playlistId);
       } else {
-        this._router.navigate(['/error'], { queryParams: { type: '1', code: '1001' } });
+        this._router.navigate(['/error'], { queryParams: { type: '1', code: '2' } });
       }
     });
 
@@ -68,11 +68,15 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
     console.log('来自本地数据源');
     this.playlistService.getDetailsFromLocal(playlistId).subscribe(root => {
       console.log(root);
-      this.listId = root.data.pid;
-      this.listTitle = root.data.name;
-      this.listCover = root.data.detail[0].cover;
-      this.tracks = JSON.parse(root.data.detail[0].content);
-      this.playlistDetailId = root.data.detail[0].playlist_detail_id;
+      if (root.code === 0) {
+        this.listId = root.data.pid;
+        this.listTitle = root.data.name;
+        this.listCover = root.data.detail[0].cover;
+        this.tracks = JSON.parse(root.data.detail[0].content);
+        this.playlistDetailId = root.data.detail[0].playlist_detail_id;
+      } else {
+        this._router.navigate(['/error'], { queryParams: { type: '1', code: root.code } });
+      }
     });
   }
 
@@ -80,59 +84,65 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
 
     this.playlistService.getDetailsFromRemote(id).subscribe(root => {
 
-      console.log('获取到歌单json');
+      if (root.code === 200) {
+        console.log('获取到歌单json');
 
-      // 歌单号
-      this.listId = root.result.id;
-      // 歌单名
-      this.listTitle = root.result.name;
-      // 歌单封面图
-      this.listCover = root.result.coverImgUrl;
+        // 歌单号
+        this.listId = root.result.id;
+        // 歌单名
+        this.listTitle = root.result.name;
+        // 歌单封面图
+        this.listCover = root.result.coverImgUrl;
 
-      // 拼装json
-      this.tracks = _.map(root.result.tracks, (track) => {
+        // 拼装json
+        this.tracks = _.map(root.result.tracks, (track) => {
 
-        // 歌曲id
-        const songId = track.id;
-        const songUrl = `http://music.163.com/song/media/outer/url?id=${songId}.mp3`;
+          // 歌曲id
+          const songId = track.id;
+          const songUrl = `http://music.163.com/song/media/outer/url?id=${songId}.mp3`;
 
-        // 歌曲标题
-        const songTitle = track.name;
+          // 歌曲标题
+          const songTitle = track.name;
 
-        // 艺术家们
-        const artists = track.artists;
-        let songArtists = '';
-        _.each(artists, (artist) => {
-          songArtists = artist.name + ', ';
+          // 艺术家们
+          const artists = track.artists;
+          let songArtists = '';
+          _.each(artists, (artist) => {
+            songArtists = artist.name + ', ';
+          });
+          // 去掉string尾指定字符
+          songArtists = _.trimEnd(songArtists, ', ');
+
+          // 专辑名称
+          const album = track.album.name;
+
+          // 歌曲时长
+          let duration = track.duration;
+          duration = _.floor(duration / 1000);
+          let min: any = _.floor(duration / 60);
+          // 补全时间为2位数显示
+          if (min < 10) {
+            min = '0' + min;
+          }
+          let sec: any = duration % 60;
+          if (sec < 10) {
+            sec = '0' + sec;
+          }
+          duration = min + ':' + sec;
+
+          return {
+            'songTitle': songTitle,
+            'songArtists': songArtists,
+            'album': album,
+            'duration': duration,
+            'songUrl': songUrl
+          };
         });
-        // 去掉string尾指定字符
-        songArtists = _.trimEnd(songArtists, ', ');
-
-        // 专辑名称
-        const album = track.album.name;
-
-        // 歌曲时长
-        let duration = track.duration;
-        duration = _.floor(duration / 1000);
-        let min: any = _.floor(duration / 60);
-        // 补全时间为2位数显示
-        if (min < 10) {
-          min = '0' + min;
-        }
-        let sec: any = duration % 60;
-        if (sec < 10) {
-          sec = '0' + sec;
-        }
-        duration = min + ':' + sec;
-
-        return {
-          'songTitle': songTitle,
-          'songArtists': songArtists,
-          'album': album,
-          'duration': duration,
-          'songUrl': songUrl
-        };
-      });
+      } else if (root.code === 404) {
+        this._router.navigate(['/error'], { queryParams: { type: '1', code: 404 } });
+      } else {
+        this._router.navigate(['/error'], { queryParams: { type: '1', code: 2 } });
+      }
 
     });
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './error.component.html',
   styleUrls: ['./error.component.less']
 })
-export class ErrorComponent implements OnInit {
+export class ErrorComponent implements OnInit, AfterViewInit {
 
   type: string;  // 0:404 1:error
   code: string;
@@ -28,8 +28,18 @@ export class ErrorComponent implements OnInit {
       redirectTo: '登录页面',
       url: '/login',
     },
-    1001: {
+    2: {
       msg: '参数不正确',
+      redirectTo: '主页',
+      url: '/',
+    },
+    404: {
+      msg: '该资源不存在',
+      redirectTo: '主页',
+      url: '/',
+    },
+    2002: {
+      msg: '该歌单详情不存在',
       redirectTo: '主页',
       url: '/',
     }
@@ -45,6 +55,10 @@ export class ErrorComponent implements OnInit {
   }
 
   ngOnInit() {
+
+  }
+
+  ngAfterViewInit() {
     this.initError();
   }
 
