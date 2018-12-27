@@ -23,6 +23,7 @@ export class PlaylistService {
   private localDetailUrl = '/boot/playlist/detail';
   private saveUrl = '/boot/playlist/save';
   private listUrl = '/boot/playlist/list';
+  private deleteInfoUrl = '/boot/playlist/delete_info';
   private deleteDetailUrl = '/boot/playlist/delete_detail';
 
   constructor(private http: HttpClient) { }
@@ -56,6 +57,14 @@ export class PlaylistService {
     return this.http.get<any>(this.listUrl, {
       params: {
         'username': username,
+      }
+    });
+  }
+
+  deleteInfo(playlistId: string): Observable<any> {
+    return this.http.delete<any>(this.deleteInfoUrl, {
+      params: {
+        'id': playlistId,
       }
     });
   }

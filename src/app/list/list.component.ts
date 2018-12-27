@@ -67,4 +67,15 @@ export class ListComponent implements OnInit {
     this._router.navigate(['/playlist/l', playlistId]);
   }
 
+  public deletePlaylist(playlistId: string) {
+    this._playlist.deleteInfo(playlistId).subscribe(root => {
+      console.log(root);
+      if (root.code === 0) {
+        this.getPlaylistList();
+      } else {
+        this._router.navigate(['/error'], { queryParams: { type: '1', code: root.code } });
+      }
+    });
+  }
+
 }
