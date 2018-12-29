@@ -32,35 +32,31 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (!this.loginInfo) {
+      this._router.navigate(['/error'], { queryParams: { type: '1', code: '1' } });
+    }
     this.getPlaylistList();
     this.getUserDetail();
   }
 
   public getPlaylistList() {
-    if (!this.loginInfo) {
-      this._router.navigate(['/error'], { queryParams: { type: '1', code: '1' } });
-    } else {
-      this._playlist.getList(this.loginInfo.username).subscribe(root => {
-        console.log(root);
-        this.playlistList = root.data;
-        _.each(this.playlistList, (playlist) => {
-          const latestDetail = _.sortBy(playlist.detail, ['add_time'])[playlist.detail.length - 1];
-          playlist.latest_time = moment(latestDetail.add_time).format('YYYY-MM-DD HH:mm:ss');
-          playlist.latest_cover = latestDetail.cover;
-        });
+    this._playlist.getList(this.loginInfo.username).subscribe(root => {
+      console.log(root);
+      this.playlistList = root.data;
+      _.each(this.playlistList, (playlist) => {
+        const latestDetail = _.sortBy(playlist.detail, ['add_time'])[playlist.detail.length - 1];
+        playlist.latest_time = moment(latestDetail.add_time).format('YYYY-MM-DD HH:mm:ss');
+        playlist.latest_cover = latestDetail.cover;
       });
-    }
+    });
+
   }
 
   public getUserDetail() {
-    if (!this.loginInfo) {
-      this._router.navigate(['/error'], { queryParams: { type: '1', code: '1' } });
-    } else {
-      this._user.getUserDetail(this.loginInfo.username).subscribe(root => {
-        console.log(root);
-        this.userDetail = root.data;
-      });
-    }
+    this._user.getUserDetail(this.loginInfo.username).subscribe(root => {
+      console.log(root);
+      this.userDetail = root.data;
+    });
   }
 
   public toPlaylist(playlistId: string) {

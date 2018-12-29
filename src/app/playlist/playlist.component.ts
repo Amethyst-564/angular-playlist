@@ -21,6 +21,10 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
   curTrack: any;
   playlistDetailId: any;
 
+  flgs = {
+    isLastOne: false,
+  };
+
   constructor(private playlistService: PlaylistService,
     private _route: ActivatedRoute,
     private _router: Router) {
@@ -65,7 +69,7 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
   }
 
   getDetailsFromLocal(playlistId: string): void {
-    console.log('来自本地数据源');
+    console.log('来自local数据源');
     this.playlistService.getDetailsFromLocal(playlistId).subscribe(root => {
       console.log(root);
       if (root.code === 0) {
@@ -74,6 +78,10 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
         this.listCover = root.data.detail[0].cover;
         this.tracks = JSON.parse(root.data.detail[0].content);
         this.playlistDetailId = root.data.detail[0].playlist_detail_id;
+
+        if (root.data.detail.length === 1) {
+          this.flgs.isLastOne = true;
+        }
       } else {
         this._router.navigate(['/error'], { queryParams: { type: '1', code: root.code } });
       }
@@ -85,7 +93,7 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
     this.playlistService.getDetailsFromRemote(id).subscribe(root => {
 
       if (root.code === 200) {
-        console.log('获取到歌单json');
+        console.log('来自remote数据源');
 
         // 歌单号
         this.listId = root.result.id;
@@ -188,7 +196,13 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
 
   delete(playlistDetailId: any) {
     this.playlistService.deleteDetail(playlistDetailId).subscribe(root => {
-      console.log(root);
+      if (root.code === 0) {
+        if (this.flgs.isLastOne) {
+          this._router.navigate(['/list']);
+        } else {
+          location.reload();
+        }
+      }
     });
   }
 

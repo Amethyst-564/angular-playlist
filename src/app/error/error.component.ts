@@ -40,8 +40,8 @@ export class ErrorComponent implements OnInit, AfterViewInit {
     },
     2002: {
       msg: '该歌单详情不存在',
-      redirectTo: '主页',
-      url: '/',
+      redirectTo: '我收藏的歌单',
+      url: '/list',
     }
   };
 
@@ -55,11 +55,13 @@ export class ErrorComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-
+    this.initError();
   }
 
   ngAfterViewInit() {
-    this.initError();
+    setTimeout(() => {
+      this.redirectTo();
+    }, 3000);
   }
 
   public initError() {
@@ -79,9 +81,6 @@ export class ErrorComponent implements OnInit, AfterViewInit {
       this.errorData.redirectTo = this.errorEnum[code].redirectTo;
       this.errorData.url = this.errorEnum[code].url;
     }
-    setTimeout(() => {
-      this.redirectTo();
-    }, 3000);
   }
 
   public redirectTo() {
