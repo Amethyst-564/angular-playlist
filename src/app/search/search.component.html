@@ -15,7 +15,7 @@
         </div>
       </div>
 
-      <button type="submit" class="btn" [class.btn-primary]="!link.hasError('required') && !link.hasError('pattern')"
+      <button type="submit" class="btn btn-secondary" [class.btn-primary]="!link.hasError('required') && !link.hasError('pattern')"
         [disabled]="link.hasError('required') || link.hasError('pattern')" (click)="parseLink(model.link)">确定</button>
     </form>
   </div>
