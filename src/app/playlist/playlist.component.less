@@ -1,12 +1,35 @@
 @primary: #563d7c;
 .left-board {
     margin-top: 2.1rem;
-}
-
-.btn-group {
-    line-height: 38px;
-    padding-top: 20px;
-    width: 65%;
+    .btn-group {
+        line-height: 38px;
+        padding-top: 20px;
+        width: 65%;
+    }
+    .detail-list {
+        padding-top: 20px;
+        width: 65%;
+        p {
+            margin: 0;
+        }
+        .detail-list-title {
+            background-color: #563d7c;
+            color: white;
+            line-height: 34px;
+            text-align: center;
+        }
+        .detail-list-content {
+            height: 100px;
+            overflow-y: auto;
+            .list-group {
+                .list-group-item {
+                    padding: .25rem 1.25rem;
+                    text-align: center;
+                    border-radius: 0;
+                }
+            }
+        }
+    }
 }
 
 #right {

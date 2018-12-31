@@ -17,6 +17,19 @@
             <button type="button" class="btn btn-primary" *ngIf="userInfo?.isLogin" (click)="delete(playlistDetailId)">删除此歌单</button>
         </div>
 
+        <div class="detail-list">
+            <p>当前版本：{{curDetail}}</p>
+            <p>共包含歌曲数：{{trackCount}}</p>
+            <div class="detail-list-title">切换历史版本</div>
+            <div class="detail-list-content">
+                <div class="list-group" *ngIf="detailList.length>1">
+                    <button type="button" class="list-group-item list-group-item-action" *ngFor="let detail of detailList">
+                        {{detail.add_time}}
+                    </button>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- right -->

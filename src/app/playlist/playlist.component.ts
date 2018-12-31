@@ -3,8 +3,9 @@ import { PlaylistService } from '../service/playlist.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { LoginComponent } from '../login/login.component';
-// 引入Lodash
+
 import * as _ from 'lodash';
+import * as moment from 'moment';
 declare var $;
 
 @Component({
@@ -19,7 +20,11 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
   listCover: string;
   tracks: any;
   curTrack: any;
+
   playlistDetailId: any;
+  detailList = [];
+  curDetail = '';
+  trackCount = '';
 
   flgs = {
     isLastOne: false,
@@ -75,9 +80,17 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
       if (root.code === 0) {
         this.listId = root.data.pid;
         this.listTitle = root.data.name;
-        this.listCover = root.data.detail[0].cover;
-        this.tracks = JSON.parse(root.data.detail[0].content);
-        this.playlistDetailId = root.data.detail[0].playlist_detail_id;
+        // sort detailList
+        this.detailList = _.orderBy(root.data.detail, ['add_time'], ['desc']);
+        _.each(this.detailList, (detail) => {
+          // format dataStr
+          detail.add_time = moment(detail.add_time).format('YYYY-MM-DD HH:mm:ss');
+        });
+        this.listCover = this.detailList[0].cover;
+        this.tracks = JSON.parse(this.detailList[0].content);
+        this.playlistDetailId = this.detailList[0].playlist_detail_id;
+        this.curDetail = this.detailList[0].add_time;
+        this.trackCount = this.tracks.length;
 
         if (root.data.detail.length === 1) {
           this.flgs.isLastOne = true;
