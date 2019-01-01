@@ -3,7 +3,7 @@
     <div class="col-3 flex-y left-board">
         <h2>{{listTitle}}</h2>
         <p>Playlist Id: {{listId}}</p>
-        <img src="{{listCover}}" alt="封面加载中.." class="img">
+        <img src="{{curDetail.cover}}" alt="封面加载中.." class="img">
 
         <div class="btn-group style-btn" role="group" aria-label="table style">
             切换主题：
@@ -14,16 +14,16 @@
         <div class="btn-group options-btn" role="group" aria-label="table style">
             相关操作：
             <button type="button" class="btn btn-primary" *ngIf="userInfo?.isLogin" (click)="save()">保存此歌单</button>
-            <button type="button" class="btn btn-primary" *ngIf="userInfo?.isLogin" (click)="delete(playlistDetailId)">删除此歌单</button>
+            <button type="button" class="btn btn-primary" *ngIf="userInfo?.isLogin" (click)="delete(curDetail.playlist_detail_id)">删除此歌单</button>
         </div>
 
         <div class="detail-list">
-            <p>当前版本：{{curDetail}}</p>
+            <p>当前版本：{{curDetail.add_time}} {{curDetail.playlist_detail_id}}</p>
             <p>共包含歌曲数：{{trackCount}}</p>
             <div class="detail-list-title">切换历史版本</div>
             <div class="detail-list-content">
                 <div class="list-group" *ngIf="detailList.length>1">
-                    <button type="button" class="list-group-item list-group-item-action" *ngFor="let detail of detailList">
+                    <button type="button" class="list-group-item list-group-item-action" *ngFor="let detail of detailList" (click)="selectDetailVersion(detail.playlist_detail_id)">
                         {{detail.add_time}}
                     </button>
                 </div>

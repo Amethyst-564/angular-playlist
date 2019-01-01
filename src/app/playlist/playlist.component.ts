@@ -23,7 +23,12 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
 
   playlistDetailId: any;
   detailList = [];
-  curDetail = '';
+  curDetail = {
+    add_time: '',
+    content: '',
+    cover: '',
+    playlist_detail_id: '',
+  };
   trackCount = '';
 
   flgs = {
@@ -86,10 +91,8 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
           // format dataStr
           detail.add_time = moment(detail.add_time).format('YYYY-MM-DD HH:mm:ss');
         });
-        this.listCover = this.detailList[0].cover;
-        this.tracks = JSON.parse(this.detailList[0].content);
-        this.playlistDetailId = this.detailList[0].playlist_detail_id;
-        this.curDetail = this.detailList[0].add_time;
+        this.curDetail = this.detailList[0];
+        this.tracks = JSON.parse(this.curDetail.content);
         this.trackCount = this.tracks.length;
 
         if (root.data.detail.length === 1) {
@@ -217,6 +220,13 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
         }
       }
     });
+  }
+
+  selectDetailVersion(playlistDetailId: any) {
+    const findResult = _.find(this.detailList, { 'playlist_detail_id': playlistDetailId });
+    this.curDetail = findResult;
+    this.tracks = JSON.parse(findResult.content);
+    this.trackCount = this.tracks.length;
   }
 
 }
