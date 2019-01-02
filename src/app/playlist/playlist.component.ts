@@ -30,6 +30,7 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
     playlist_detail_id: '',
   };
   trackCount = '';
+  sourceType = '';
 
   flgs = {
     isLastOne: false,
@@ -79,10 +80,12 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
   }
 
   getDetailsFromLocal(playlistId: string): void {
-    console.log('来自local数据源');
     this.playlistService.getDetailsFromLocal(playlistId).subscribe(root => {
-      console.log(root);
+
       if (root.code === 0) {
+        // local源
+        this.sourceType = 'local';
+
         this.listId = root.data.pid;
         this.listTitle = root.data.name;
         // sort detailList
@@ -92,6 +95,7 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
           detail.add_time = moment(detail.add_time).format('YYYY-MM-DD HH:mm:ss');
         });
         this.curDetail = this.detailList[0];
+        this.listCover = this.curDetail.cover;
         this.tracks = JSON.parse(this.curDetail.content);
         this.trackCount = this.tracks.length;
 
@@ -109,7 +113,8 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
     this.playlistService.getDetailsFromRemote(id).subscribe(root => {
 
       if (root.code === 200) {
-        console.log('来自remote数据源');
+        // remote源
+        this.sourceType = 'remote';
 
         // 歌单号
         this.listId = root.result.id;

@@ -1,9 +1,11 @@
 <div class="row main">
   <div class="col-3 flex-y left-board">
     <img src="{{userDetail.user_icon}}" alt="用户头像.." class="img">
-    <h2>{{userDetail.user_alias}}</h2>
-    <p>用户id: {{userDetail.user_id}}</p>
-    <p>{{userDetail.user_description}}</p>
+    <div class="user-detail-text flex-y">
+      <h2 class="user_alias">{{userDetail.user_alias}}</h2>
+      <p>用户id: {{userDetail.user_id}}</p>
+      <p>{{userDetail.user_description}}</p>
+    </div>
   </div>
 
   <div class="col-9 flex-y right-board">
