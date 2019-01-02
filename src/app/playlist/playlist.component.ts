@@ -80,12 +80,11 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
   }
 
   getDetailsFromLocal(playlistId: string): void {
+    // local源
+    this.sourceType = 'local';
+
     this.playlistService.getDetailsFromLocal(playlistId).subscribe(root => {
-
       if (root.code === 0) {
-        // local源
-        this.sourceType = 'local';
-
         this.listId = root.data.pid;
         this.listTitle = root.data.name;
         // sort detailList
@@ -99,6 +98,7 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
         this.tracks = JSON.parse(this.curDetail.content);
         this.trackCount = this.tracks.length;
 
+        // 判断是否最后一条记录
         if (root.data.detail.length === 1) {
           this.flgs.isLastOne = true;
         }
@@ -109,13 +109,11 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
   }
 
   getDetailsFromRemote(id: string): void {
+    // remote源
+    this.sourceType = 'remote';
 
     this.playlistService.getDetailsFromRemote(id).subscribe(root => {
-
       if (root.code === 200) {
-        // remote源
-        this.sourceType = 'remote';
-
         // 歌单号
         this.listId = root.result.id;
         // 歌单名
