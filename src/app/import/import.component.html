@@ -1,0 +1,19 @@
+<div class="row file-upload">
+  <div class="col-5">
+
+        <!-- invisible -->
+        <div class="hidden">
+          <input type="file" class="custom-file-input" id="customFile" (change)="changeFile($event.target.files)" name="files">
+          <label class="custom-file-label" for="customFile">Choose file</label>
+        </div>
+
+        <!-- visiable -->
+        <div class="input-group mb-3">
+          <input type="button" class="form-control" value="{{placeHolderText}}" (click)="openFileBrowse()">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">Upload</button>
+          </div>
+        </div>
+
+  </div>
+</div>

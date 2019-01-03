@@ -16,6 +16,7 @@ import { UploadComponent } from './upload/upload.component';
 import { ListComponent } from './list/list.component';
 import { HomeComponent } from './home/home.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { ImportComponent } from './import/import.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     UploadComponent,
     ListComponent,
     HomeComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    ImportComponent
   ],
   imports: [
     BrowserModule,

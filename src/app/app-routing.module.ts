@@ -10,6 +10,7 @@ import { UploadComponent } from './upload/upload.component';
 import { ListComponent } from './list/list.component';
 import { HomeComponent } from './home/home.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { ImportComponent } from './import/import.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
       { path: 'playlist/l/:playlistId', component: PlaylistComponent, pathMatch: 'prefix' },
       { path: 'list', component: ListComponent, pathMatch: 'prefix' },
       { path: 'search', component: SearchComponent, pathMatch: 'prefix' },
+      { path: 'import', component: ImportComponent, pathMatch: 'prefix' },
       { path: 'about', component: AboutComponent, pathMatch: 'prefix' },
       { path: 'upload', component: UploadComponent, pathMatch: 'prefix' },
       { path: 'user-detail', component: UserDetailComponent, pathMatch: 'prefix' },

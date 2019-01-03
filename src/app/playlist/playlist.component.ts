@@ -6,6 +6,7 @@ import { LoginComponent } from '../login/login.component';
 
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import * as XLSX from 'xlsx';
 declare var $;
 
 @Component({
@@ -230,6 +231,41 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
     this.curDetail = findResult;
     this.tracks = JSON.parse(findResult.content);
     this.trackCount = this.tracks.length;
+  }
+
+  exportFile() {
+    // if (this.sourceType === 'local') {
+
+    /* generate worksheet */
+    const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet([
+      ['基本信息'],
+      ['歌单名称', this.listTitle],
+      ['网易云曲库pid', this.listId],
+      ['歌单封面图片链接', this.listCover],
+      [],
+      ['歌单详情'],
+      ['歌曲标题', '艺术家', '专辑名称', '时长', '试听链接']
+    ]);
+    XLSX.utils.sheet_add_json(ws, this.tracks, {
+      origin: 'A8',
+      skipHeader: true,
+    });
+
+    /* generate workbook and add the worksheet */
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    if (!wb.Props) {
+      wb.Props = {};
+    }
+    wb.Props.Author = '歌单拯救计划';
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    /* save to file */
+    XLSX.writeFile(wb, `${this.listId}_${this.listTitle}.xlsx`);
+    // }
+
+    // if (this.sourceType === 'remote') {
+
+    // }
   }
 
 }
