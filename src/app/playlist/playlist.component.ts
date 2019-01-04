@@ -234,20 +234,18 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
   }
 
   exportFile() {
-    // if (this.sourceType === 'local') {
 
     /* generate worksheet */
     const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet([
       ['基本信息'],
-      ['歌单名称', this.listTitle],
-      ['网易云曲库pid', this.listId],
-      ['歌单封面图片链接', this.listCover],
+      ['歌单名称', '网易云曲库pid', '歌单封面图片链接'],
+      [ this.listTitle, this.listId, this.listCover],
       [],
       ['歌单详情'],
       ['歌曲标题', '艺术家', '专辑名称', '时长', '试听链接']
     ]);
     XLSX.utils.sheet_add_json(ws, this.tracks, {
-      origin: 'A8',
+      origin: 'A7',
       skipHeader: true,
     });
 
@@ -261,11 +259,7 @@ export class PlaylistComponent implements OnInit, AfterViewInit {
 
     /* save to file */
     XLSX.writeFile(wb, `${this.listId}_${this.listTitle}.xlsx`);
-    // }
 
-    // if (this.sourceType === 'remote') {
-
-    // }
   }
 
 }

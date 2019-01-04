@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import * as _ from 'lodash';
+import * as XLSX from 'xlsx';
 declare var $;
 
 @Component({
@@ -28,10 +29,33 @@ export class ImportComponent implements OnInit {
   }
 
   changeFile(files: FileList) {
-    const fileName = files[0].name;
-    const ext = _.last(fileName.split('.'));
+    const file = files[0];
+    const ext = _.last(file.name.split('.'));
     if (ext === 'xlsx') {
-      console.log(fileName);
+      this.placeHolderText = `已选择文件：${file.name}`;
+      console.log(file);
+      const reader = new FileReader();
+      reader.onload = function (ev) {
+        const data = (ev.target as any).result;
+        const workbook = XLSX.read(data, {
+          type: 'binary'
+        });
+        console.log(workbook);
+        const content = [];
+        for (const sheet in workbook.Sheets) {
+          if (workbook.Sheets.hasOwnProperty(sheet)) {
+            const fromTo = workbook.Sheets[sheet]['!ref'];
+            const basicFromTo = 'A2:C3';
+            const detailFromTo = `A6:${_.last(fromTo.split(':'))}`;
+
+            const basicContent = XLSX.utils.sheet_to_json(workbook.Sheets[sheet], { range: basicFromTo });
+            const detailContent = XLSX.utils.sheet_to_json(workbook.Sheets[sheet], { range: detailFromTo });
+            console.log(basicContent);
+            console.log(detailContent);
+          }
+        }
+      };
+      reader.readAsBinaryString(file);
     } else {
       this.msgType = 'error';
       this.msgText = '暂不支持此格式';
