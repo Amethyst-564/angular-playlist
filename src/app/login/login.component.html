@@ -39,7 +39,7 @@
             <div *ngIf="model.code === 1002 && in_username.value!=''" class="warn">
               用户名不存在
             </div>
-            <button type="submit" class="btn" [class.btn-primary]="!in_username.hasError('required') && !in_password.hasError('required')"
+            <button type="submit" class="btn btn-secondary" [class.btn-primary]="!in_username.hasError('required') && !in_password.hasError('required')"
               [disabled]="in_username.hasError('required') || in_password.hasError('required')" (click)="login(in_username.value, in_password.value)">登陆</button>
 
           </form>
@@ -78,7 +78,7 @@
             <div *ngIf="model.code === 0 && on_username.value!=''" class="success">
               {{model.msg}}
             </div>
-            <button type="submit" class="btn" [class.btn-primary]="!on_username.hasError('required') && !on_password.hasError('required') && !on_ackPassword.hasError('required') && on_ackPassword.value === on_password.value"
+            <button type="submit" class="btn btn-secondary" [class.btn-primary]="!on_username.hasError('required') && !on_password.hasError('required') && !on_ackPassword.hasError('required') && on_ackPassword.value === on_password.value"
               [disabled]="on_username.hasError('required') || on_password.hasError('required') || on_ackPassword.hasError('required') || on_ackPassword.value !== on_password.value"
               (click)="logon(on_username.value, on_password.value)">注册</button>
 
